@@ -1,0 +1,22 @@
+<svg width="168" height="168" viewBox="0 0 168 168" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M102.197 49.5189C101.952 49.3195 101.665 49.1779 101.358 49.1045C101.052 49.031 100.732 49.0276 100.424 49.0946L84 52.8076L67.5761 49.0521C67.2629 48.981 66.9376 48.9827 66.6251 49.057C66.3127 49.1313 66.0211 49.2762 65.7728 49.4808C65.5244 49.6854 65.3258 49.9442 65.192 50.2376C65.0582 50.531 64.9927 50.8512 65.0006 51.1739V77.0591C64.9887 77.5496 65.1463 78.0291 65.4465 78.4159C65.7467 78.8027 66.171 79.0731 66.6472 79.1809L83.5356 83H84.4644L101.353 79.1809C101.829 79.0731 102.253 78.8027 102.554 78.4159C102.854 78.0291 103.011 77.5496 102.999 77.0591V51.1739C102.998 50.8552 102.925 50.5409 102.786 50.2544C102.647 49.9679 102.446 49.7165 102.197 49.5189ZM69.2227 53.826L81.889 56.6904V78.2261L69.2227 75.3617V53.826ZM98.7773 75.3617L86.111 78.2261V56.6904L98.7773 53.826V75.3617Z" fill="#08FE90"/>
+<g filter="url(#filter0_d_1_364)">
+<circle cx="84" cy="66" r="53" stroke="url(#paint0_linear_1_364)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<filter id="filter0_d_1_364" x="0.5" y="0.5" width="167" height="167" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="12" operator="erode" in="SourceAlpha" result="effect1_dropShadow_1_364"/>
+<feOffset dy="18"/>
+<feGaussianBlur stdDeviation="20"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.6 0 0 0 0 0.87451 0 0 0 0 1 0 0 0 0.4 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_364"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_364" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_1_364" x1="31" y1="13" x2="84" y2="119" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1C8AFF"/>
+<stop offset="1" stop-color="#47CAFF" stop-opacity="0.5"/>
+</linearGradient>
+</defs>
+</svg>
