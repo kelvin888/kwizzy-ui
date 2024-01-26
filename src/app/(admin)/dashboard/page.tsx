@@ -3,7 +3,7 @@ import ProfileIcon from "assets/images/person.jpg"
 import Records from "./Records/Records";
 import Achievements from "./Achievements/Achievements";
 import FeaturedCategories from "./FeaturedCategories/FeaturedCategories";
-import { Progress } from "components/Progress/Progress";
+import { Progress } from "components/progress/Progress";
 
 export default function Dashboard() {
 

@@ -1,5 +1,9 @@
-import { Progress } from 'components/Progress/Progress'
+import { Progress } from 'components/progress/Progress'
+import Image from 'next/image'
 import React from 'react'
+import ComebackIcon from "assets/images/achievements/comeback.png"
+import WinnerIcon from "assets/images/achievements/winner.png"
+import LuckIcon from "assets/images/achievements/luck.png"
 
 const Achievements = () => {
     return (
@@ -11,7 +15,16 @@ const Achievements = () => {
                 </div>
             </div>
             <div className='shadow-sm p-6 w-[30rem] h-[22rem] rounded-[30px]'>
-                achievements here
+                <div className='flex justify-between mt-2'>
+                    <Image width={100} src={ComebackIcon} alt='comeback icon' />
+                    <Image width={100} src={WinnerIcon} alt='comeback icon' />
+                </div>
+                <div className='flex justify-center'>
+                    <Image width={100} src={LuckIcon} alt='comeback icon' />
+                </div>
+                <hr className='my-6 text-grayscale-70' />
+
+                <div className='text-center text-grayscale-90'>View all</div>
             </div>
         </div>
     )
