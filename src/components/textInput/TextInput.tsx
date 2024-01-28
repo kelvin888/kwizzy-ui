@@ -24,7 +24,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
                 <input
                     ref={ref}
                     className={clsx(
-                        'block h-[40px] w-full rounded border-0 px-3 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
+                        'block h-[2.5rem] w-full rounded border-0 px-3 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
                         {
                             'pl-10': iconBefore,
                             'pr-10': iconAfter,

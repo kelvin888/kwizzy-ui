@@ -25,7 +25,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         <input
           ref={ref}
           className={twMerge(clsx(
-            'block h-[64px] w-full rounded-[30px] bg-white shadow-sm border-0 px-9 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
+            'block h-[4rem] w-full rounded-[1.875rem] bg-white shadow-sm border-0 px-9 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
             {
               'pl-10': iconBefore,
               'pr-10': iconAfter,

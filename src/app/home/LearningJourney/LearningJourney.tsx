@@ -9,28 +9,28 @@ import JourneyItem4 from 'assets/images/journey/journey-item4.svg'
 const LearningJourney = () => {
     return (
         <div className='px-24 py-36'>
-            <div className='text-[54px] max-w-[465px]'>
+            <div className='text-[3.375rem] max-w-[29rem]'>
                 Let’ checkout your <span className='text-secondary-100'>learning</span> journey
             </div>
             <div className='flex gap-28 mt-24'>
                 <div className='grid grid-cols-2 gap-4'>
                     <Feature
-                        icon={<div className='font-avertaBold text-[54px]'>1<span className='text-primary-100'>.</span></div>}
+                        icon={<div className='font-avertaBold text-[3.375rem]'>1<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'
                         description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
                     />
                     <Feature
-                        icon={<div className='font-avertaBold text-[54px]'>2<span className='text-primary-100'>.</span></div>}
+                        icon={<div className='font-avertaBold text-[3.375rem]'>2<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'
                         description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
                     />
                     <Feature
-                        icon={<div className='font-avertaBold text-[54px]'>3<span className='text-primary-100'>.</span></div>}
+                        icon={<div className='font-avertaBold text-[3.375rem]'>3<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'
                         description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
                     />
                     <Feature
-                        icon={<div className='font-avertaBold text-[54px]'>4<span className='text-primary-100'>.</span></div>}
+                        icon={<div className='font-avertaBold text-[3.375rem]'>4<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'
                         description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
                     />

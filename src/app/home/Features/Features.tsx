@@ -10,10 +10,10 @@ const Features = () => {
     return (
         <div className='p-44 bg-gradient-grayscale relative'>
             <Image src={FeatureGraphic1} alt='feature graphic' className='absolute -top-20  left-0' />
-            <div className='text-[54px] max-w-[557px] mx-auto text-center font-avertaSemiBold'>Quizzy comes with
+            <div className='text-[3.375rem] max-w-[34.8rem] mx-auto text-center font-avertaSemiBold'>Quizzy comes with
                 amazing <span className='text-secondary-100'>features</span> like:
             </div>
-            <div className='flex justify-between mt-[100px] gap-32'>
+            <div className='flex justify-between mt-[6.2rem] gap-32'>
                 <Feature
                     icon={<Image src={threeDIcon} alt='3d icon' width={100} />}
                     description='3 dimensional coverage of all questions related to a perticular topic'

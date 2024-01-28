@@ -4,7 +4,7 @@ type Props = {
 }
 const Container: FC<Props> = ({ children }) => {
     return (
-        <div className='max-w-[1440px] mx-auto'>{children}</div>
+        <div className='max-w-[90rem] mx-auto'>{children}</div>
     )
 }
 

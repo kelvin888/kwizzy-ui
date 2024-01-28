@@ -1,22 +1,35 @@
+"use client"
 import Image from 'next/image'
 import React from 'react'
 import QuizImage from "assets/images/featured-category/category-1.jpeg"
 import Button from 'components/button/Button'
+import { useRouter } from 'next/navigation'
+import useQuizStore from 'store/quizStore'
+import dateUtility from "utils/date";
 
 const QuizDetails = () => {
+    const router = useRouter()
+    const { quiz } = useQuizStore()
+
+    const startQuiz = () => {
+        return router.push("/quiz/questions")
+    }
     return (
         <div className='text-grayscale-90'>
-            <div className="text-[33px] text-grayscale-90 font-poppins font-bold">History Quiz</div>
+
+            <div className="text-[2rem] text-grayscale-90 font-poppins font-bold">{quiz?.title}</div>
             <div className="mb-8 text-grayscale-90 text-lg">Read the following instructions</div>
+
+
 
             <div className='flex gap-12'>
                 <div>
-                    <Image className='rounded-[30px]' src={QuizImage} alt='quiz image' />
+                    <Image className='rounded-[1.875rem]' src={QuizImage} alt='quiz image' />
                 </div>
                 <div className='space-y-10'>
                     <div className='flex items-center gap-10'>
                         <div className='font-semibold text-2xl'>Date: </div>
-                        <div className='text-xl'>28/07/2021</div>
+                        <div className='text-xl'>{dateUtility.getCurrentDate()}</div>
                     </div>
                     <div className='flex items-center gap-10'>
                         <div className='font-semibold text-2xl'>Time Limit: </div>
@@ -45,7 +58,7 @@ const QuizDetails = () => {
             </div>
 
             <div className='flex justify-end items-center mt-16'>
-                <Button variant="tertiary">Start</Button>
+                <Button onClick={startQuiz} variant="tertiary">Start</Button>
             </div>
         </div>
     )

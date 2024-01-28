@@ -33,14 +33,14 @@ export const buttonVariantsVariant = cva(
                 tertiary: [
                     'bg-grayscale-60',
                     'text-white',
-                    'rounded-[30px]',
+                    'rounded-[1.875rem]',
                     'font-poppings'
                 ],
                 white: [
                     'bg-white',
                     'text-black',
                     'shadow-sm',
-                    'rounded-[30px]'
+                    'rounded-[1.875rem]'
                 ],
                 success: [
                     'bg-success-100',

@@ -8,7 +8,7 @@ const Hero = () => {
     return (
         <div className='px-24 pb-24 flex'>
             <div className='self-center pl-24'>
-                <div className='text-grayscale-100 text-[64px] font-avertaBold max-w-[430px]'>Learn
+                <div className='text-grayscale-100 text-[4rem] font-avertaBold max-w-[41.875rem]'>Learn
                     new concepts
                     each minute</div>
                 <div className='border-l-2 mt-7 text-grayscale-50 text-2xl border-l-secondary-100 pl-3 py-2 text-nowrap'>

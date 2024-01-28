@@ -17,7 +17,7 @@ const Login = () => {
         <div className='flex w-full h-screen'>
             <div className='w-[45%] h-full bg-login-bg bg-no-repeat bg-cover hidden xl:block'>
                 <div className="w-full h-full backdrop-blur-lg flex justify-end items-center pr-20">
-                    <div className='text-lg max-w-[323px] text-white relative py-8 font-poppings'>
+                    <div className='text-lg max-w-[20rem] text-white relative py-8 font-poppings'>
                         <div className='text-turquoise-100 font-lilyScriptOne text-8xl absolute -top-8'>&quot;</div>
                         <div className=" font-quicksand font-normal">Those people who develop the ability to continuously acquire new and better forms of knowledge that they can apply to their work and to their lives will be the movers and shakers in our society for the indefinite future</div>
                         <div className='mt-3 font-medium'>Brian Tracy</div>
@@ -27,13 +27,13 @@ const Login = () => {
                 </div>
             </div>
             <div className='w-full xl:w-[55%] h-full flex items-center justify-center overflow-y-auto overflow-x-hidden'>
-                <div className='flex flex-col min-w-[600px] items-center'>
+                <div className='flex flex-col min-w-[37rem] items-center'>
                     <div className='flex gap-2 justify-start w-full text-grayscale-60 cursor-pointer' onClick={() => router.push("/")}>
                         <Image src={BackArrow} alt='back arrow' />
                         <span>back</span>
                     </div>
-                    <div className='w-[436px] mt-24'>
-                        <div className='text-black font-bold font-poppings text-[30px]'>Login to your Account</div>
+                    <div className='w-[27rem] mt-24'>
+                        <div className='text-black font-bold font-poppings text-[1.875rem]'>Login to your Account</div>
                         <div className='text-grayscale-60 text-lg'>with your registered Email Address</div>
 
                         <hr className='my-7 text-grayscale-30' />

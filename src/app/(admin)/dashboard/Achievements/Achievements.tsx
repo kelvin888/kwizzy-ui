@@ -10,11 +10,11 @@ const Achievements = () => {
         <div className=''>
             <div className='flex items-center justify-between mb-4'>
                 <div className='text-2xl font-poppins font-bold text-grayscale-90 '>Achievements</div>
-                <div className='w-[160px]'>
+                <div className='w-[10rem]'>
                     <Progress value={60} />
                 </div>
             </div>
-            <div className='shadow-sm p-6 w-[30rem] h-[22rem] rounded-[30px]'>
+            <div className='shadow-sm p-6 w-[30rem] h-[22rem] rounded-[1.875rem]'>
                 <div className='flex justify-between mt-2'>
                     <Image width={100} src={ComebackIcon} alt='comeback icon' />
                     <Image width={100} src={WinnerIcon} alt='comeback icon' />

@@ -8,7 +8,7 @@ type Props = {
 export const Record: FC<Props> = ({ icon, title, value }) => {
     return (
         <div className='flex gap-4 items-start'>
-            <div className='w-[70px] h-[70px] shadow-sm rounded-[15px] flex items-center justify-center'>
+            <div className='w-[4.3rem] h-[4.3rem] shadow-sm rounded-[15px] flex items-center justify-center'>
                 <Image src={icon} alt='checked circle icon' width={36} height={36} />
             </div>
             <div className='text-grayscale-90'>
