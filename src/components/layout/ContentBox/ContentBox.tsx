@@ -5,7 +5,7 @@ type Props = {
 }
 export const ContentBox: FC<Props> = ({ children }) => {
     return (
-        <div className='absolute top-[8.313rem] left-[20rem] w-full md:w-[calc(100vw_-_329px)]'>
+        <div className='absolute top-[8.313rem] xl:left-[20rem] w-full xl:w-[calc(100vw_-_329px)]'>
             <AdminContent>
                 {children}
             </AdminContent>

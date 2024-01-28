@@ -10,7 +10,7 @@ export default function Dashboard() {
     return (
         <div>
             <div className="flex items-start gap-6">
-                <div className="border-2 border-grayscale-20 rounded-[1.875rem]">
+                <div className="border-2 border-grayscale-20 rounded-[1.875rem] hidden xl:block">
                     <Image className="rounded-[1.875rem] w-[18.6rem]" src={ProfileIcon} alt="profile icon" />
                 </div>
                 <div className="flex-1 pt-2">

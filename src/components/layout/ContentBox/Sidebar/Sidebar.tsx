@@ -9,7 +9,7 @@ export const AdminSidebar = () => {
     const router = useRouter();
 
     return (
-        <div className='fixed  h-[calc(100vh_-_133px)] top-[8.313rem] flex flex-col w-[20.5rem] px-7'>
+        <div className='fixed  h-[calc(100vh_-_133px)] top-[8.313rem] xl:flex flex-col w-[20.5rem] px-7 hidden'>
             <div className='flex flex-col gap-5'>
                 <MenuItem Icon={LayoutDashboard} title='Dashboard' url='/dashboard' />
                 <MenuItem Icon={BookCheckIcon} title='Take Quiz' url='/quiz' />
