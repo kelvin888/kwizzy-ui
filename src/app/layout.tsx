@@ -2,6 +2,10 @@ import type { Metadata } from 'next'
 import { Quicksand, Lily_Script_One, Poppins } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import Providers from 'utils/provider';
+
 
 const quicksand = Quicksand({
   subsets: ['latin'],
@@ -49,7 +53,12 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${quicksand.variable} ${avertaBold.variable} ${avertaSemiBold.variable} ${lily_script_one.variable} ${poppins.variable}`}>{children}</body>
+      <body className={`${quicksand.variable} ${avertaBold.variable} ${avertaSemiBold.variable} ${lily_script_one.variable} ${poppins.variable}`}>
+        <Providers>
+          <ToastContainer />
+          {children}
+        </Providers>
+      </body>
     </html>
   )
 }

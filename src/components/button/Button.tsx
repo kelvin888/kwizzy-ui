@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import { cva, VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge'
 import clsx from 'clsx';
+import { Loader2 } from 'lucide-react';
 
 export type ButtonVariantsVariant = VariantProps<typeof buttonVariantsVariant>;
 
@@ -130,8 +131,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             {...props}
         >
             {isLoading && (
-                <div className="inline-flex h-5 w-5 content-center items-center">
-                    ...
+                <div className="inline-flex h-5 w-5 content-center items-center animate-spin">
+                    <Loader2 />
                 </div>
             )}
             {iconBefore && <div>{iconBefore}</div>}

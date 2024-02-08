@@ -1,11 +1,15 @@
+"use client"
 import Image from "next/image";
 import ProfileIcon from "assets/images/person.jpg"
 import Records from "./Records/Records";
 import Achievements from "./Achievements/Achievements";
 import FeaturedCategories from "./FeaturedCategories/FeaturedCategories";
 import { Progress } from "components/progress/Progress";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Dashboard() {
+    const path = usePathname()
+    console.log("on dash", path)
 
     return (
         <div>

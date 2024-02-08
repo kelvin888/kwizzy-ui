@@ -16,7 +16,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     const { className, ...rest } = props;
 
     return (
-      <div className="relative">
+      <div className="relative w-full">
         {iconBefore && (
           <div className="absolute inset-y-0 left-0 flex items-center pl-4 text-grayscale-100">
             {iconBefore}

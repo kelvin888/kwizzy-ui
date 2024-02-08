@@ -1,8 +1,9 @@
 import { authRepository } from "api/authRepository";
+import { LoginDataType } from "types/auth";
 
 const authService = {
-    login: async () => {
-        return await authRepository.authenticateUser();
+    login: async (data: LoginDataType) => {
+        return await authRepository.authenticateUser(data);
     },
     register: async () => {
         return await authRepository.registerUser();

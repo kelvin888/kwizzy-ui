@@ -1,12 +1,13 @@
 import { authUrls } from "constants/apiUrls/auth";
-import { get } from "./client";
+import { get, post } from "./client";
+import {  AuthResponseData, LoginDataType } from "types/auth";
 
 export const authRepository = {
   registerUser: async () => {
     return await get(authUrls.REGISTER_USER);
   },
-  authenticateUser: async () => {
-    return await get(authUrls.AUTHENTICATE_USER);
+  authenticateUser: async (data: LoginDataType): Promise<AuthResponseData> => {
+    return await post(authUrls.AUTHENTICATE_USER, data);
   },
   resetPassword: async () => {
     return await get(authUrls.RESET_PASSWORD);

@@ -1,11 +1,16 @@
+import { QueryClient } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import env from 'config';
+
 
 const config: AxiosRequestConfig = {
   baseURL: env.QUIZ_SERVICE_ENDPOINT,
 };
 
 const client = axios.create(config);
+
+console.log(" the client", config);
+
 
 type ApiClientRead = <T>(
   url: string,
@@ -51,3 +56,14 @@ export const post: ApiClientWrite = client.post;
 
 export const put: ApiClientWrite = client.put;
 
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+    },
+    mutations: {
+      retry: false,
+    },
+  },
+});
