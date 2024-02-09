@@ -1,9 +1,9 @@
-// import { Progress } from 'components/progress/Progress'
 import Image from 'next/image'
 import React from 'react'
 import ComebackIcon from "assets/images/achievements/comeback.png"
 import WinnerIcon from "assets/images/achievements/winner.png"
 import LuckIcon from "assets/images/achievements/luck.png"
+import { ProgressBar } from 'components/progressBar/ProgressBar'
 
 const Achievements = () => {
     return (
@@ -11,7 +11,7 @@ const Achievements = () => {
             <div className='flex items-center justify-between mb-4'>
                 <div className='text-2xl font-poppins font-bold text-grayscale-90 '>Achievements</div>
                 <div className='w-[10rem]'>
-                    {/* <Progress value={60} /> */}
+                    <ProgressBar value={60} />
                 </div>
             </div>
             <div className='shadow-sm p-6 w-[30rem] h-[22rem] rounded-[1.875rem]'>
