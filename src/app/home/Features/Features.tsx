@@ -13,7 +13,7 @@ const Features = () => {
             <div className='text-[3.375rem] max-w-[34.8rem] mx-auto text-center font-avertaSemiBold'>Quizzy comes with
                 amazing <span className='text-secondary-100'>features</span> like:
             </div>
-            <div className='flex justify-between mt-[6.2rem] gap-32'>
+            <div className='flex sm:flex-wrap lg:flex-nowrap justify-between mt-[6.2rem] gap-32'>
                 <Feature
                     icon={<Image src={threeDIcon} alt='3d icon' width={100} />}
                     description='3 dimensional coverage of all questions related to a perticular topic'

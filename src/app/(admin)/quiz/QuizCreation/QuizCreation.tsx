@@ -9,7 +9,9 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import {
     Dialog,
+    DialogClose,
     DialogContent,
+    DialogTrigger,
 } from "@/components/ui/dialog"
 import useQuizCreationStore from 'store/quizCreation'
 import { Plus } from 'lucide-react'
@@ -29,9 +31,10 @@ const schema = Joi.object({
 
 type Props = {
     showModal: boolean
+    closeModal: () => void
 }
 
-const QuizCreation: FC<Props> = ({ showModal }) => {
+const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<QuizCreationData>({
         resolver: joiResolver(schema),
     });
@@ -55,7 +58,7 @@ const QuizCreation: FC<Props> = ({ showModal }) => {
     console.log("store", questions)
 
     return (
-        <Dialog open={showModal}>
+        <Dialog open={showModal} onOpenChange={closeModal}>
             <DialogContent className="sm:max-w-[85%] overflow-hidden">
                 <form onSubmit={handleSubmit(onSubmit)} className=" text-grayscale-90 font-poppins font-bold">
                     <div

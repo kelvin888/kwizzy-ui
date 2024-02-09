@@ -18,6 +18,10 @@ const Page = () => {
 
     const [showcreateQuizModal, setshowcreateQuizModal] = useState(false)
 
+    const closeModal = () => {
+        setshowcreateQuizModal(false)
+    }
+
     return (
         <div className='p-5 flex flex-col gap-5'>
             <div className='border-b pb-5'>
@@ -31,7 +35,7 @@ const Page = () => {
                 </div>
 
 
-                <div className='grid grid-cols-4 gap-4'>
+                <div className='grid lg:grid-cols-3 2xl:grid-cols-4 gap-4'>
                     {categories.map(category =>
                         <Category key={category.id} image={category.imageUrl} title={category.title} />
                     )}
@@ -50,7 +54,7 @@ const Page = () => {
                 </div>
 
             </div>
-            <QuizCreation showModal={showcreateQuizModal} />
+            <QuizCreation showModal={showcreateQuizModal} closeModal={closeModal} />
         </div>
     )
 }

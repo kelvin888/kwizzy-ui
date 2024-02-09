@@ -13,29 +13,35 @@ const LearningJourney = () => {
                 Let’ checkout your <span className='text-secondary-100'>learning</span> journey
             </div>
             <div className='flex gap-28 mt-24'>
-                <div className='grid grid-cols-2 gap-4'>
+                <div className='grid lg:grid-cols-2 gap-4'>
                     <Feature
                         icon={<div className='font-avertaBold text-[3.375rem]'>1<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'
-                        description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
+                        description='Choose your favourite subject
+                        from the vast selection of subjects
+                        and continnue your journey'
                     />
                     <Feature
                         icon={<div className='font-avertaBold text-[3.375rem]'>2<span className='text-primary-100'>.</span></div>}
-                        title='Choose your subject'
-                        description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
+                        title='Select the difficulty'
+                        description='Select difficulty of your choice
+                        and get the difficulty of questions
+                        according to your difficulty'
                     />
                     <Feature
                         icon={<div className='font-avertaBold text-[3.375rem]'>3<span className='text-primary-100'>.</span></div>}
-                        title='Choose your subject'
-                        description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
+                        title='Increasing difficulty'
+                        description='Difficulty of questions will increase for the upcoming question irrespective of result of a previous question'
                     />
                     <Feature
                         icon={<div className='font-avertaBold text-[3.375rem]'>4<span className='text-primary-100'>.</span></div>}
-                        title='Choose your subject'
-                        description='Choose your favourite subject from the vast selection of subjects and continnue your journey'
+                        title='Detailed overview of scores'
+                        description='Get the detailed overview of
+                        your question answer session
+                        and tips on how you can improve'
                     />
                 </div>
-                <div className='w-[55rem]'>
+                <div className='w-[55rem] hidden lg:block'>
                     <div>
                         <Image src={JourneyItem1} alt='journey item' />
                     </div>
