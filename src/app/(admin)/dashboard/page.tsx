@@ -4,8 +4,8 @@ import ProfileIcon from "assets/images/person.jpg"
 import Records from "./Records/Records";
 import Achievements from "./Achievements/Achievements";
 import FeaturedCategories from "./FeaturedCategories/FeaturedCategories";
-import { Progress } from "components/progress/Progress";
 import { usePathname, useRouter } from "next/navigation";
+import { ProgressBar } from "components/progressBar/ProgressBar";
 
 export default function Dashboard() {
     const path = usePathname()
@@ -20,7 +20,7 @@ export default function Dashboard() {
                 <div className="flex-1 pt-2">
                     <div className="text-[2rem] text-grayscale-90 font-poppins font-bold">Kelvin Orhungul</div>
                     <div className="mb-8 text-grayscale-90 text-lg">Bonus booster 24lv</div>
-                    <Progress value={50} />
+                    <ProgressBar value={50} />
                     <Records />
                 </div>
             </div>
