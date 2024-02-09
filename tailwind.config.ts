@@ -75,7 +75,7 @@ const config = {
       backgroundImage: {
         'gradient-primary': 'linear-gradient(95deg, #1884FF 0%, #49CDFF 100%)',
         'gradient-grayscale': 'linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%), #F5F5F5;',
-          'login-bg': 'url("/login-bg.svg")'
+          'login-bg': 'url("/login-bg.jpeg")'
       },
       fontFamily: {
         quicksand: ['var(--font-quicksand)'],
