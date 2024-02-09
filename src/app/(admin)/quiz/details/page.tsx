@@ -4,18 +4,18 @@ import React from 'react'
 import QuizImage from "assets/images/featured-category/category-1.jpeg"
 import Button from 'components/button/Button'
 import { useRouter } from 'next/navigation'
-import useQuizStore from 'store/quizStore'
+import useQuizTakingStore from 'store/quizTaking'
 import dateUtility from "utils/date";
 
 const QuizDetails = () => {
     const router = useRouter()
-    const { quiz } = useQuizStore()
+    const { quiz } = useQuizTakingStore()
 
     const startQuiz = () => {
         return router.push("/quiz/questions")
     }
     return (
-        <div className='text-grayscale-90'>
+        <div className='text-grayscale-90 p-5'>
 
             <div className="text-[2rem] text-grayscale-90 font-poppins font-bold">{quiz?.title}</div>
             <div className="mb-8 text-grayscale-90 text-lg">Read the following instructions</div>

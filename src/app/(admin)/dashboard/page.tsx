@@ -12,7 +12,7 @@ export default function Dashboard() {
     console.log("on dash", path)
 
     return (
-        <div>
+        <div className="p-5">
             <div className="flex items-start gap-6">
                 <div className="border-2 border-grayscale-20 rounded-[1.875rem] hidden xl:block">
                     <Image className="rounded-[1.875rem] w-[18.6rem]" src={ProfileIcon} alt="profile icon" />

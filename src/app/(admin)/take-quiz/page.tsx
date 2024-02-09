@@ -1,16 +1,13 @@
 "use client"
 import React from 'react'
-import QuizCreation from '../quiz/QuizCreation/QuizCreation'
-
-
 
 const Page = () => {
 
 
 
     return (
-        <div className='h-full'>
-            <QuizCreation />
+        <div className='h-full p-5'>
+            take quiz
         </div >
     )
 }

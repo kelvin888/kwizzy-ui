@@ -31,7 +31,7 @@ interface QuizStore extends QuizState {
   computeScore: () => void
 }
 
-const useQuizStore = create<QuizStore>((set) => ({
+const useQuizTakingStore = create<QuizStore>((set) => ({
   quiz: historyQuiz,
   userProgress: {
     currentQuestionIndex: 0,
@@ -84,4 +84,4 @@ const useQuizStore = create<QuizStore>((set) => ({
 
 }));
 
-export default useQuizStore;
+export default useQuizTakingStore;

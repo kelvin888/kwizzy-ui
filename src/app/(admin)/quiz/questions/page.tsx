@@ -6,11 +6,11 @@ import Button from 'components/button/Button'
 import Radio from 'components/radio'
 import useQuizTimer from 'hooks/useQuizTimer'
 import { useRouter } from 'next/navigation'
-import useQuizStore from 'store/quizStore'
+import useQuizTakingStore from 'store/quizTaking'
 
 
 const QuizDetails = () => {
-    const { quiz, userProgress, selectAnswer, goToNextQuestion, goToPreviousQuestion, resetAnswers, computeScore } = useQuizStore()
+    const { quiz, userProgress, selectAnswer, goToNextQuestion, goToPreviousQuestion, resetAnswers, computeScore } = useQuizTakingStore()
     const { currentQuestionIndex, selectedAnswers } = userProgress
     const router = useRouter()
     const handleSubmission = () => {
@@ -31,7 +31,7 @@ const QuizDetails = () => {
     const isLastQuestion = quiz && currentQuestionIndex === quiz.questions.length - 1
     const isFirstQuestion = currentQuestionIndex === 0
     return (
-        <div className='text-grayscale-90'>
+        <div className='text-grayscale-90 p-5'>
             <div className='flex justify-between'>
                 <div>
                     <div className="text-[2rem] text-grayscale-90 font-poppins font-bold">History Quiz</div>
