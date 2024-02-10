@@ -34,12 +34,10 @@ const Login = () => {
     const { mutate: authenticateUser, isPending } = useMutation({
         mutationFn: authService.login,
         onSuccess: (response) => {
-            console.log("yaaaaay login successfully", response.data.accessToken)
             Cookies.set('authUser', JSON.stringify(response.data), { expires: 7 });
-            router.push("/dashboard")
+            router.push("/quiz")
         },
         onError(error: AxiosError) {
-            console.log("err", error)
             toast(handleError(error), { type: "error" });
         },
     });

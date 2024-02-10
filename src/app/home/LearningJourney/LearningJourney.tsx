@@ -9,11 +9,11 @@ import JourneyItem4 from 'assets/images/journey/journey-item4.svg'
 const LearningJourney = () => {
     return (
         <div className='px-24 py-36'>
-            <div className='text-[3.375rem] max-w-[29rem]'>
+            <div className='text-[3.375rem] text-center xl:text-left xl:max-w-[29rem]'>
                 Let’ checkout your <span className='text-secondary-100'>learning</span> journey
             </div>
             <div className='flex gap-28 mt-24'>
-                <div className='grid lg:grid-cols-2 gap-4'>
+                <div className='grid xl:grid-cols-2 gap-4'>
                     <Feature
                         icon={<div className='font-avertaBold text-[3.375rem]'>1<span className='text-primary-100'>.</span></div>}
                         title='Choose your subject'

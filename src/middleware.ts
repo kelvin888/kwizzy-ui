@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function middleware(request: NextRequest) {
-    console.log("are you running?", request.cookies);
     
   // Check if the requested URL is one of the protected routes
   const protectedRoutes = ['/quiz', '/dashboard']
@@ -13,10 +12,7 @@ export function middleware(request: NextRequest) {
   try {
     if (protectedRoutes.includes(requestedUrl)) {
       // If the requested URL is a protected route, check if the user is authenticated
-      const currentUser = request.cookies.get('authUser');
-  
-      console.log("currentUser", currentUser);
-      
+      const currentUser = request.cookies.get('authUser');      
       
       if (!currentUser) {
         // If the user is not authenticated, redirect to the login page

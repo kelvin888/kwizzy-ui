@@ -9,9 +9,6 @@ const config: AxiosRequestConfig = {
 
 const client = axios.create(config);
 
-console.log(" the client", config);
-
-
 type ApiClientRead = <T>(
   url: string,
   config?: AxiosRequestConfig,

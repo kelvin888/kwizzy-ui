@@ -25,7 +25,6 @@ const QuizDetails = () => {
     const { formattedTime } = useQuizTimer({ durationInSeconds: 10, onTimeElapsed: handleSubmission });
 
     const handleSelectedOption = (index: number) => {
-        console.log("change captured", index);
         selectAnswer(index)
     }
     const isLastQuestion = quiz && currentQuestionIndex === quiz.questions.length - 1
