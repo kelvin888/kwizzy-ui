@@ -72,8 +72,6 @@ const useQuizTakingStore = create<QuizStore>((set) => ({
       return totalScore + (selectedAnswer === correctAnswer ? 1 : 0);
     }, 0) || 0;
 
-    console.log("final result: ", score);
-
     return {
       userProgress: {
         ...state.userProgress,

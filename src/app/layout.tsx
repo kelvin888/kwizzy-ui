@@ -49,11 +49,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  console.log("checking rerenders");
 
   return (
-    <html lang="en">
-      <body className={`${quicksand.variable} ${avertaBold.variable} ${avertaSemiBold.variable} ${lily_script_one.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${quicksand.className} ${avertaBold.className} ${avertaSemiBold.className} ${lily_script_one.className} ${poppins.className}`}>
+      <body>
         <Providers>
           <ToastContainer />
           {children}

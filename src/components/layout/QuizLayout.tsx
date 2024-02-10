@@ -7,7 +7,6 @@ export default function QuizLayout({
 }: {
     children: React.ReactNode
 }) {
-    console.log("checking rerender inner");
 
     return (
         <section className='bg-grayscale-20 relative h-screen  w-screen overflow-x-hidden'>

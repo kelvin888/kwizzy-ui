@@ -6,8 +6,8 @@ const config = {
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   prefix: "",
   theme: {
     container: {
@@ -75,7 +75,7 @@ const config = {
       backgroundImage: {
         'gradient-primary': 'linear-gradient(95deg, #1884FF 0%, #49CDFF 100%)',
         'gradient-grayscale': 'linear-gradient(0deg, #F5F5F5 0%, #F5F5F5 100%), #F5F5F5;',
-          'login-bg': 'url("/login-bg.jpeg")'
+        'login-bg': 'url("/login-bg.jpeg")'
       },
       fontFamily: {
         quicksand: ['var(--font-quicksand)'],
@@ -100,13 +100,13 @@ const config = {
         100: '#01FF88',
       },
       grayscale: {
-        20:'#FBF9F9',
-        30:'#F5F5F5',
-        40:'#C4C4C4',
-        50:'#828282',
+        20: '#FBF9F9',
+        30: '#F5F5F5',
+        40: '#C4C4C4',
+        50: '#828282',
         60: '#8692A6',
         70: "#DADADA",
-        90:'#696F79',
+        90: '#696F79',
         100: '#333333',
       },
       danger: {

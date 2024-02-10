@@ -9,7 +9,6 @@ import { ProgressBar } from "components/progressBar/ProgressBar";
 
 export default function Dashboard() {
     const path = usePathname()
-    console.log("on dash", path)
 
     return (
         <div className="p-5">

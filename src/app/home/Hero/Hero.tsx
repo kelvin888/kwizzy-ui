@@ -6,10 +6,10 @@ import Button from 'components/button/Button'
 
 const Hero = () => {
     return (
-        <div className='px-24 pb-24 flex'>
-            <div className='self-center pl-24'>
-                <div className='text-grayscale-100 text-[4rem] font-avertaBold max-w-[41.875rem]'>Learn
-                    new concepts
+        <div className='px-24 pb-24 flex flex-wrap xl:flex-nowrap justify-center'>
+            <div className='self-center xl:pl-24 pt-24'>
+                <div className='text-grayscale-100 text-[4rem] font-avertaBold xl:max-w-[41.875rem]'>Learn<br />
+                    new concepts <br />
                     each minute</div>
                 <div className='border-l-2 mt-7 text-grayscale-50 text-2xl border-l-secondary-100 pl-3 py-2 text-nowrap'>
                     We help you prepare for exams and quizes

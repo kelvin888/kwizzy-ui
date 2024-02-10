@@ -55,8 +55,6 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
         addQuestion("Empty Question");
     };
 
-    console.log("store", questions)
-
     return (
         <Dialog open={showModal} onOpenChange={closeModal}>
             <DialogContent className="sm:max-w-[85%] overflow-hidden">
