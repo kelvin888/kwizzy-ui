@@ -20,7 +20,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
         ref={ref}
         rows={rows}
         className={clsx(
-          'block w-full scroll-pb-3 rounded border-0 p-3 px-3 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
+          'block w-full scroll-pb-3 rounded-[30px] px-9 border-0 p-3 text-sm font-regular text-grayscale-180 outline-none ring-1 disabled:cursor-not-allowed disabled:bg-grayscale-5 disabled:text-grayscale-50',
           {
             'ring-grayscale-30 focus:ring-primary-100': !error,
             'ring-danger-100': error,
