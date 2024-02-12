@@ -4,30 +4,39 @@ import TextArea from 'components/form/TextArea'
 import TextInput from 'components/form/TextInput'
 import Field from 'components/form/field'
 import Radio from 'components/radio'
-import { FieldError, useForm } from 'react-hook-form'
-import { joiResolver } from '@hookform/resolvers/joi'
 import Joi from 'joi'
 import {
     Dialog,
-    DialogClose,
     DialogContent,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import useQuizCreationStore from 'store/quizCreation'
 import { Plus } from 'lucide-react'
 import { v4 as uuidv4 } from 'uuid';
 
 
-export type QuizCreationData = {
-    name: string;
-    question: string;
-    difficultyLevel: string;
-};
 
 const schema = Joi.object({
     name: Joi.string().required(),
-    question: Joi.string().required(),
+    questions: Joi.array().items(
+        Joi.object({
+            questionText: Joi.string().required().messages({
+                'string.empty': 'Question cannot be empty',
+                'any.required': 'Question is required'
+            }),
+            options: Joi.array().items(
+                Joi.object({
+                    id: Joi.string().required(),
+                    text: Joi.string().required()
+                }).required().messages({
+                    'object.base': 'Option cannot be empty',
+                    'any.required': 'At least one option is required'
+                })
+            ).min(2).required()
+        })
+    ).min(1).required(),
 });
+
+
 
 type Props = {
     showModal: boolean
@@ -35,30 +44,34 @@ type Props = {
 }
 
 const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
-    const { register, handleSubmit, formState: { errors } } = useForm<QuizCreationData>({
-        resolver: joiResolver(schema),
-    });
 
-    const { addQuestion, questions, quizTitle, setQuizTitle, addOptionToQuestion, updateQuestion } = useQuizCreationStore()
+    const { addQuestion, questions, setQuizName, quizName, updateQuestion, updateOption } = useQuizCreationStore()
 
-    const onSubmit = (data: QuizCreationData) => {
-        console.log(data);
+    const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+        evt.preventDefault()
+        // console.log(questions);
         // Perform submission logic here
     };
 
-    const handleNameBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-        const title = event.target.value;
-        setQuizTitle(title);
+    const handleAddQuestionClick = () => {
+        addQuestion("emptyQuestion");
     };
 
-    const handleAddQuestionClick = () => {
-        addQuestion("Empty Question");
-    };
+
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuizName(e.target.value)
+    }
+
+    const handleQuestionChange = (e: React.ChangeEvent<HTMLTextAreaElement>, questionId: string) => {
+        updateQuestion(questionId, e.target.value)
+    }
+
+
 
     return (
         <Dialog open={showModal} onOpenChange={closeModal}>
             <DialogContent className="sm:max-w-[85%] overflow-hidden">
-                <form onSubmit={handleSubmit(onSubmit)} className=" text-grayscale-90 font-poppins font-bold">
+                <form className="text-grayscale-90 font-poppins font-bold" onSubmit={onSubmit}>
                     <div
                         className="flex min-h-full"
                     >
@@ -70,16 +83,16 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                             <div>
                                 <Field.Group>
                                     <Field.Label required>Quiz name</Field.Label>
-                                    <TextInput {...register("name")} onBlur={handleNameBlur} required />
-                                    <Field.Error data-cy="login-form-password-error-label">
-                                        {errors.name && <span>{(errors.name as FieldError).message}</span>}
+                                    <TextInput onChange={handleNameChange} value={quizName} />
+                                    <Field.Error>
+                                        .
                                     </Field.Error>
                                 </Field.Group>
                             </div>
 
                             <div>Questions</div>
                             {questions.map((question, index) =>
-                                <div key={`${question}${index}`} className='bg-white p-3'>
+                                <div key={uuidv4()} className='bg-white p-3'>
                                     {question.questionText}
                                 </div>
                             )}
@@ -92,29 +105,38 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                         </div >
 
                         <div className='p-5 relative flex-1 flex flex-col gap-5 overflow-y-auto h-[45rem] max-h-[90vh]'>
-                            {questions.map((question, index) =>
-                                <div key={uuidv4()} className='flex flex-col gap-5'>
+                            {questions.map((question, questionIndex) =>
+                                <div key={question.id} className='flex flex-col gap-5'>
                                     <div className='flex items-center gap-5'>
-                                        <div className='rounded-full h-10 w-10 bg-grayscale-50 text-white flex items-center justify-center text-2xl'>{index + 1}</div>
+                                        <div className='rounded-full h-10 w-10 bg-grayscale-50 text-white flex items-center justify-center text-2xl'>{questionIndex + 1}</div>
                                         <div className='text-2xl'>Question</div>
                                     </div>
 
                                     <Field.Group>
-                                        <TextArea {...register("question")} placeholder='Type your question here' required rows={2} />
-                                        <Field.Error data-cy="login-form-password-error-label">
-                                            {errors.question && <span>{(errors.question as FieldError).message}</span>}
+                                        <TextArea
+                                            className='ring-1 ring-grayscale-50'
+                                            placeholder='Type your question here'
+                                            rows={2}
+                                            onChange={(e) => handleQuestionChange(e, question.id)}
+                                            value={question.questionText}
+                                        />
+                                        <Field.Error>
+                                            .
                                         </Field.Error>
                                     </Field.Group>
-                                    {question.options.map(option =>
-                                        <div key={uuidv4()} className='flex w-full gap-5 items-center'>
-                                            <Radio />
-                                            <TextInput className='w-full' placeholder='Add option' />
-                                        </div>
-                                    )}
-
-
+                                    <div className='pl-5'>
+                                        {question.options.map((option) =>
+                                            <Field.Group key={option.id} className='flex w-full gap-5 items-center'>
+                                                <TextInput className='w-full' placeholder='Add option' onChange={(e) => updateOption(question.id, option.id, e.target.value)} />
+                                                <Field.Error className='w-full'>
+                                                    .
+                                                </Field.Error>
+                                            </Field.Group>
+                                        )}
+                                    </div>
                                 </div>
                             )}
+
 
 
 

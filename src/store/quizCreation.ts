@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 interface Option {
     id: string;
     text: string;
-}[]
+}
 
 interface Question {
     id: string;
@@ -13,21 +13,23 @@ interface Question {
 }
 
 interface QuizState {
-    quizTitle: string;
+    quizName: string;
     questions: Question[];
     addQuestion: (questionText: string) => void;
-    updateQuestion: (index: number, text: string) => void;
-    addOptionToQuestion: (index: number, option: string) => void;
-    setQuizTitle: (title: string) => void;
+    updateQuestion: (questionId: string, text: string) => void;
+    addOptionToQuestion: (questionId: string, option: string) => void;
+    updateOption: (questionId: string, optionId: string, text: string) => void;
+    setQuizName: (title: string) => void;
 }
 
 const useQuizStore = create<QuizState>((set: SetState<QuizState>) => ({
-    quizTitle: '',
+    quizName: '',
     questions: [{
         id: uuidv4(),
         questionText: 'emptyQuestion',
         options: [
-            { id: uuidv4(), text: "" }
+            { id: uuidv4(), text: "" },
+            { id: uuidv4(), text: "" },
         ]
     }],
     addQuestion: (questionText) => {
@@ -37,27 +39,39 @@ const useQuizStore = create<QuizState>((set: SetState<QuizState>) => ({
                 id: uuidv4(),
                 questionText,
                 options: [
-                    { id: uuidv4(), text: "" }
+                    { id: uuidv4(), text: "" },
+                    { id: uuidv4(), text: "" },
                 ]
             }],
         }));
     },
-    updateQuestion: (index, text) => {
+    updateQuestion: (questionId, text) => {
         set((state) => {
             const updatedQuestions = [...state.questions];
-            updatedQuestions[index].questionText = text;
+            const questionIndex = updatedQuestions.findIndex(question => question.id === questionId)
+            updatedQuestions[questionIndex].questionText = text;
             return { questions: updatedQuestions };
         });
     },
-    addOptionToQuestion: (index, option) => {
+    addOptionToQuestion: (questionId, option) => {
         set((state) => {
             const updatedQuestions = [...state.questions];
+            const questionIndex = updatedQuestions.findIndex(question => question.id === questionId);
             const optionId = uuidv4();
-            updatedQuestions[index].options.push({ id: optionId, text: option });
+            updatedQuestions[questionIndex].options.push({ id: optionId, text: option });
             return { questions: updatedQuestions };
         });
     },
-    setQuizTitle: (title) => set({ quizTitle: title }),
+    updateOption: (questionId, optionId, text) => {
+        set((state) => {
+            const updatedQuestions = [...state.questions];
+            const questionIndex = updatedQuestions.findIndex(question => question.id === questionId);
+            const optionIndex = updatedQuestions[questionIndex].options.findIndex(option => option.id === optionId);
+            updatedQuestions[questionIndex].options[optionIndex].text = text;
+            return { questions: updatedQuestions };
+        });
+    },
+    setQuizName: (title) => set({ quizName: title }),
 }));
 
 export default useQuizStore;
