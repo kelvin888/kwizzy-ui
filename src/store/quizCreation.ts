@@ -26,7 +26,7 @@ const useQuizStore = create<QuizState>((set: SetState<QuizState>) => ({
     quizName: '',
     questions: [{
         id: uuidv4(),
-        questionText: 'emptyQuestion',
+        questionText: '',
         options: [
             { id: uuidv4(), text: "" },
             { id: uuidv4(), text: "" },

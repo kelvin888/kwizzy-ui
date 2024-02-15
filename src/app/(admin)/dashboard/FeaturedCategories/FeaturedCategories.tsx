@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import Category from './Category/Category'
+import Category from './Quiz/Quiz'
 import Category1 from "assets/images/featured-category/category-1.jpeg"
 import Category2 from "assets/images/featured-category/category-2.jpeg"
 import Category3 from "assets/images/featured-category/category-3.jpeg"

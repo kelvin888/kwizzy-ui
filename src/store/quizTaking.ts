@@ -32,7 +32,7 @@ interface QuizStore extends QuizState {
 }
 
 const useQuizTakingStore = create<QuizStore>((set) => ({
-  quiz: historyQuiz,
+  quiz: null,
   userProgress: {
     currentQuestionIndex: 0,
     selectedAnswers: [],

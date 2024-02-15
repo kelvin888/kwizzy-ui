@@ -3,22 +3,32 @@ import Button from 'components/button/Button'
 import TextArea from 'components/form/TextArea'
 import TextInput from 'components/form/TextInput'
 import Field from 'components/form/field'
-import Radio from 'components/radio'
 import Joi from 'joi'
 import {
     Dialog,
     DialogContent,
 } from "@/components/ui/dialog"
-import useQuizCreationStore from 'store/quizCreation'
 import { Plus } from 'lucide-react'
 import { v4 as uuidv4 } from 'uuid';
-
+import { joiResolver } from '@hookform/resolvers/joi'
+import { FieldError, useFieldArray, useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+import quizService from 'services/quizService'
+import { AxiosError } from "axios"
+import { toast } from 'react-toastify'
+import { handleError } from 'utils/getAxiosErrorMessage'
+import { useRouter } from 'next/navigation'
+import { queryClient } from 'api/client'
+import { quizKeys } from 'constants/queryKeys'
 
 
 const schema = Joi.object({
-    name: Joi.string().required(),
+    title: Joi.string().required().messages({
+        "string.empty": "Title cannot be empty",
+    }),
     questions: Joi.array().items(
         Joi.object({
+            id: Joi.string().required(),
             questionText: Joi.string().required().messages({
                 'string.empty': 'Question cannot be empty',
                 'any.required': 'Question is required'
@@ -27,15 +37,14 @@ const schema = Joi.object({
                 Joi.object({
                     id: Joi.string().required(),
                     text: Joi.string().required()
-                }).required().messages({
-                    'object.base': 'Option cannot be empty',
+                }).messages({
+                    'string.empty': 'Option cannot be empty',
                     'any.required': 'At least one option is required'
                 })
-            ).min(2).required()
+            )
         })
-    ).min(1).required(),
+    ),
 });
-
 
 
 type Props = {
@@ -45,33 +54,60 @@ type Props = {
 
 const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
 
-    const { addQuestion, questions, setQuizName, quizName, updateQuestion, updateOption } = useQuizCreationStore()
+    const router = useRouter()
 
-    const onSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-        evt.preventDefault()
-        // console.log(questions);
+    const { control, register, handleSubmit, formState: { errors, isValid }, watch, setValue } = useForm<QuizCreationData>({
+        resolver: joiResolver(schema),
+        defaultValues: {
+            title: '',
+            questions: [{ questionText: '', id: uuidv4(), options: [{ text: '', id: uuidv4() }] }]
+        }
+    });
+
+    const { fields, append } = useFieldArray({
+        control,
+        name: "questions"
+    });
+
+    const onSubmit = (data: QuizCreationData) => {
+        console.log(data);
         // Perform submission logic here
+        createQuiz(data)
     };
 
     const handleAddQuestionClick = () => {
-        addQuestion("emptyQuestion");
+        append({ questionText: '', id: uuidv4(), options: [{ text: '', id: uuidv4() }] })
     };
 
+    const handleAddOptionClick = (questionIndex: number) => {
+        const newOption = { text: '', id: uuidv4() };
+        setValue(
+            `questions.${questionIndex}.options`,
+            [...((values.questions && values.questions[questionIndex]?.options) || []) as Option[], newOption]
+        );
 
-    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuizName(e.target.value)
-    }
+    };
 
-    const handleQuestionChange = (e: React.ChangeEvent<HTMLTextAreaElement>, questionId: string) => {
-        updateQuestion(questionId, e.target.value)
-    }
+    const { mutate: createQuiz, isPending } = useMutation({
+        mutationFn: quizService.createQuiz,
+        onSuccess: (response) => {
+            toast.success("New Quiz created");
+            router.push("/quiz")
+            closeModal()
+            queryClient.invalidateQueries({ queryKey: [quizKeys.FIND_ALL] })
+        },
+        onError(error: AxiosError) {
+            toast(handleError(error), { type: "error" });
+        },
+    });
 
-
+    const values = watch()
 
     return (
         <Dialog open={showModal} onOpenChange={closeModal}>
             <DialogContent className="sm:max-w-[85%] overflow-hidden">
-                <form className="text-grayscale-90 font-poppins font-bold" onSubmit={onSubmit}>
+                <form className="text-grayscale-90 font-poppins font-bold"
+                    onSubmit={handleSubmit(onSubmit)}>
                     <div
                         className="flex min-h-full"
                     >
@@ -83,21 +119,21 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                             <div>
                                 <Field.Group>
                                     <Field.Label required>Quiz name</Field.Label>
-                                    <TextInput onChange={handleNameChange} value={quizName} />
-                                    <Field.Error>
-                                        .
+                                    <TextInput {...register("title")} />
+                                    <Field.Error data-cy="login-form-password-error-label">
+                                        {errors.title && <span>{(errors.title as FieldError).message}</span>}
                                     </Field.Error>
                                 </Field.Group>
                             </div>
 
                             <div>Questions</div>
-                            {questions.map((question, index) =>
-                                <div key={uuidv4()} className='bg-white p-3'>
+                            {values.questions && values.questions.map((question) =>
+                                <div key={question.id} className='bg-white p-3'>
                                     {question.questionText}
                                 </div>
                             )}
 
-                            <Button onClick={handleAddQuestionClick}>
+                            <Button variant="plain" onClick={handleAddQuestionClick}>
                                 <Plus />
                                 Add Question
                             </Button>
@@ -105,7 +141,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                         </div >
 
                         <div className='p-5 relative flex-1 flex flex-col gap-5 overflow-y-auto h-[45rem] max-h-[90vh]'>
-                            {questions.map((question, questionIndex) =>
+                            {fields.map((question, questionIndex) =>
                                 <div key={question.id} className='flex flex-col gap-5'>
                                     <div className='flex items-center gap-5'>
                                         <div className='rounded-full h-10 w-10 bg-grayscale-50 text-white flex items-center justify-center text-2xl'>{questionIndex + 1}</div>
@@ -114,25 +150,32 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
 
                                     <Field.Group>
                                         <TextArea
-                                            className='ring-1 ring-grayscale-50'
                                             placeholder='Type your question here'
                                             rows={2}
-                                            onChange={(e) => handleQuestionChange(e, question.id)}
-                                            value={question.questionText}
+                                            {...register(`questions.${questionIndex}.questionText`)}
                                         />
-                                        <Field.Error>
-                                            .
+                                        <Field.Error data-cy="login-form-password-error-label">
+                                            {<span>{errors.questions?.length && errors?.questions[questionIndex]?.questionText?.message}</span>}
                                         </Field.Error>
                                     </Field.Group>
-                                    <div className='pl-5'>
-                                        {question.options.map((option) =>
+                                    <div className='pl-5 flex flex-col gap-3'>
+                                        {values?.questions?.[questionIndex]?.options?.map((option, optionIndex) =>
                                             <Field.Group key={option.id} className='flex w-full gap-5 items-center'>
-                                                <TextInput className='w-full' placeholder='Add option' onChange={(e) => updateOption(question.id, option.id, e.target.value)} />
+                                                <TextInput
+                                                    className='w-full'
+                                                    placeholder='Add option'
+                                                    {...register(`questions.${questionIndex}.options.${optionIndex}.text`)}
+                                                />
+
                                                 <Field.Error className='w-full'>
-                                                    .
+                                                    {errors?.questions?.[questionIndex]?.options?.[optionIndex]?.text?.message ?? ''}
                                                 </Field.Error>
                                             </Field.Group>
                                         )}
+                                        <Button variant="plain" className='w-[15rem]' onClick={() => handleAddOptionClick(questionIndex)}>
+                                            <Plus />
+                                            Add Option
+                                        </Button>
                                     </div>
                                 </div>
                             )}
@@ -142,7 +185,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
 
                             <div className='flex justify-between'>
                                 <div className='w-full flex'>
-                                    <Button className='ml-auto' variant="primary" type='submit' isLoading={false}>Submit</Button>
+                                    <Button className='ml-auto' variant="primary" type='submit' isLoading={isPending}>Submit</Button>
                                 </div>
                             </div>
 
