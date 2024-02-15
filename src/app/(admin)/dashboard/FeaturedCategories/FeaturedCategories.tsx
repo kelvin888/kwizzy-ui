@@ -21,10 +21,10 @@ const FeaturedCategories = () => {
                 <div className='text-base font-poppins cursor-pointer text-nowrap' onClick={handleViewAll}>View All</div>
             </div>
             <div className='grid 2xl:grid-cols-2 gap-4'>
-                <Category image={Category1} title="History" />
+                {/* <Category image={Category1} title="History" />
                 <Category image={Category2} title="History" />
                 <Category image={Category3} title="History" />
-                <Category image={Category4} title="History" />
+                <Category image={Category4} title="History" /> */}
             </div>
         </div>
     )
