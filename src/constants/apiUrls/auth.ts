@@ -1,8 +1,8 @@
 export const authUrls = {
-    REGISTER_USER: "/user/register",
+    REGISTER_USER: "/auth/register",
     AUTHENTICATE_USER: "/auth/login",
-    RESET_PASSWORD: "/user/reset-password",
-    GET_ALL_USERS: "/user/reset-password",
-    GET_USER_BY_ID: "/user/reset-password",
-    UPDATE_USER: "/user/reset-password"
+    RESET_PASSWORD: "/auth/reset-password",
+    GET_ALL_USERS: "/auth/reset-password",
+    GET_USER_BY_ID: "/auth/reset-password",
+    UPDATE_USER: "/auth/reset-password"
 }

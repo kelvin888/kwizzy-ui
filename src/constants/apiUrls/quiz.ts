@@ -1,5 +1,5 @@
 export const quizUrls = {
-    ALL_QUIZZES: "/quiz",
-    CREATE_QUIZ: "/quiz",
-    UPDATE_QUIZ: "/quiz"
+    ALL_QUIZZES: "/quiz/quizzes",
+    CREATE_QUIZ: "/quiz/quizzes",
+    UPDATE_QUIZ: "/quiz/quizzes"
 }

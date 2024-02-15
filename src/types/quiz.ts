@@ -16,6 +16,15 @@ interface Question {
 }
 
 interface QuizCreationData {
-    name: string;
+    title: string;
     questions: Question[];
 }
+
+interface QuizCreationResponseData {
+    data: QuizCreationData
+}
+
+interface QuizResponseData {
+    data: Quiz[]
+}
+

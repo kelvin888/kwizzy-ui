@@ -23,9 +23,9 @@ const QuizCreationSidebar: FC<Props> = ({ errors, questions, register, handleAdd
             <div>
                 <Field.Group>
                     <Field.Label required>Quiz name</Field.Label>
-                    <TextInput {...register("name")} required />
+                    <TextInput {...register("title")} required />
                     <Field.Error>
-                        {errors.name && <span>{(errors.name as FieldError).message}</span>}
+                        {errors.title && <span>{(errors.title as FieldError).message}</span>}
                     </Field.Error>
                 </Field.Group>
             </div>

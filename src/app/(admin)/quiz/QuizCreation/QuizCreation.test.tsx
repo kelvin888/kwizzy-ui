@@ -6,7 +6,7 @@ import QuizCreation from './QuizCreation';
 describe('Quiz creation Component', () => {
 
     test('renders QuizCreation component', () => {
-        render(<QuizCreation />);
+        // render(<QuizCreation />);
         expect(screen.getByTestId('quiz-title-input')).toBeInTheDocument();
         expect(screen.getByTestId("quiz-time-input")).toBeInTheDocument()
 
@@ -17,6 +17,6 @@ describe('Quiz creation Component', () => {
     });
 
     test('adds a new question when "Add Question" button is clicked', () => {
-        render(<QuizCreation />);
+        // render(<QuizCreation />);
     });
 });

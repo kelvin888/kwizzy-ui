@@ -1,12 +1,12 @@
 import { quizUrls } from "constants/apiUrls/quiz";
-import { get } from "./client";
+import { get, post } from "./client";
 
 export const quizRepository = {
-  getAllQuizzes: async () => {
+  getAllQuizzes: async ():Promise<QuizResponseData> => {
     return await get(quizUrls.ALL_QUIZZES);
   },
-  createQuiz: async () => {
-    return await get(quizUrls.ALL_QUIZZES);
+  createQuiz: async (data: QuizCreationData): Promise<QuizCreationResponseData> => {
+    return await post(quizUrls.CREATE_QUIZ,data);
   },
   getQuizById: async () => {
     return await get(quizUrls.ALL_QUIZZES);

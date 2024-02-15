@@ -4,8 +4,8 @@ const quizService = {
     getAllQuizes: async () => {
         return await quizRepository.getAllQuizzes();
     },
-    createQuiz: async () => {
-        return await quizRepository.getAllQuizzes();
+    createQuiz: async (data: QuizCreationData) => {
+        return await quizRepository.createQuiz(data);
     },
 };
 
