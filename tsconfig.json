@@ -9,11 +9,11 @@
     "noEmit": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "module": "NodeNext",
+    "module": "commonjs",
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "node",
     "baseUrl": "./src",
     "plugins": [
       {
