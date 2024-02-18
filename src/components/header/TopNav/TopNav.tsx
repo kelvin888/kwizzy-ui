@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { type FC } from 'react'
 import Menu from './Menu/Menu'
 
-const TopNav = () => {
+const TopNav: FC = () => {
     return (
         <div className='xl:flex gap-12 text-grayscale-50 hidden'>
             <Menu title="How it Works?" />

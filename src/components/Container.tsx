@@ -1,5 +1,5 @@
-import React, { FC, ReactNode } from 'react'
-type Props = {
+import React, { type FC, type ReactNode } from 'react'
+interface Props {
     children: ReactNode
 }
 const Container: FC<Props> = ({ children }) => {

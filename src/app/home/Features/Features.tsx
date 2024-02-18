@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { type FC } from 'react'
 import threeDIcon from "assets/images/3dbox.svg"
 import subjectsIcon from "assets/images/subject-icon.svg"
 import solutionsIcon from "assets/images/solutions-icon.svg"
@@ -7,7 +7,7 @@ import FeatureGraphic2 from "assets/images/feature-graphic-2.svg"
 import Image from 'next/image'
 import { Feature } from '../../../components/feature/Feature'
 
-const Features = () => {
+const Features: FC = () => {
     return (
         <div className='p-24 xl:p-44 bg-gradient-grayscale relative'>
             <Image src={FeatureGraphic1} alt='feature graphic' className='absolute -top-0  left-0 w-40' />

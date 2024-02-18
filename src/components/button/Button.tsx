@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import { cva, VariantProps } from 'class-variance-authority';
+import React, { type ReactNode } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { twMerge } from 'tailwind-merge'
 import clsx from 'clsx';
 import { Loader2 } from 'lucide-react';
@@ -130,14 +130,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             type="button"
             {...props}
         >
-            {isLoading && (
+            {(isLoading ?? false) && (
                 <div className="inline-flex h-5 w-5 content-center items-center animate-spin">
                     <Loader2 />
                 </div>
             )}
-            {iconBefore && <div>{iconBefore}</div>}
+            {iconBefore !== null && <div>{iconBefore}</div>}
             {children}
-            {iconAfter && <div className="inline-flex">{iconAfter}</div>}
+            {iconAfter !== null && <div className="inline-flex">{iconAfter}</div>}
         </button>
     ),
 );

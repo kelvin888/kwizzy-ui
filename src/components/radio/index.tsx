@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { VariantProps, cva } from 'class-variance-authority';
+import { type VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -86,7 +86,7 @@ export const Radio = React.forwardRef<HTMLInputElement, RadioProps>(
           clsx(
             radioClassNamesByProps({
               size,
-              error: error,
+              error,
               disabled,
               checked,
             }),

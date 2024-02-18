@@ -1,4 +1,4 @@
-const DATA_TEST_IDS = {
-    QUIZ_TITLE: 'quiz-title',
-    QUIZ_ANSWER: 'quiz-answer',
-}
+export const DATA_TEST_IDS = {
+  QUIZ_TITLE: "quiz-title",
+  QUIZ_ANSWER: "quiz-answer",
+};

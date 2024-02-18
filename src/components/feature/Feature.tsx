@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 
 export const Feature: FC<{ title: string, description: string, icon: ReactNode }> = ({ title, description, icon }) => {
     return <div>

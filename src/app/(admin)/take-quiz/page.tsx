@@ -1,9 +1,7 @@
 "use client"
-import React from 'react'
+import React, { type FC } from 'react'
 
-const Page = () => {
-
-
+const Page: FC = () => {
 
     return (
         <div className='h-full p-5'>

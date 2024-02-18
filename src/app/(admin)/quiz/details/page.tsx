@@ -1,18 +1,18 @@
 "use client"
 import Image from 'next/image'
-import React from 'react'
+import React, { type FC } from 'react'
 import QuizImage from "assets/images/featured-category/category-1.jpeg"
 import Button from 'components/button/Button'
 import { useRouter } from 'next/navigation'
 import useQuizTakingStore from 'store/quizTaking'
 import dateUtility from "utils/date";
 
-const QuizDetails = () => {
+const QuizDetails: FC = () => {
     const router = useRouter()
     const { quiz } = useQuizTakingStore()
 
-    const startQuiz = () => {
-        return router.push("/quiz/questions")
+    const startQuiz = (): void => {
+        router.push("/quiz/questions");
     }
     return (
         <div className='text-grayscale-90 p-5'>

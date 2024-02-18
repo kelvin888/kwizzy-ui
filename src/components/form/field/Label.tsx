@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 type FieldLabelProps = {
   required?: boolean;
+  className?: string
 } & React.HTMLAttributes<HTMLLabelElement>;
 
 const Label = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
@@ -17,7 +18,7 @@ const Label = React.forwardRef<HTMLLabelElement, FieldLabelProps>(
         {...props}
       >
         {children}
-        {!required && (
+        {required === undefined && (
           <span className="ml-1 font-regular text-grayscale-50">
             (optional)
           </span>

@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-type Props = {
+import React, { type FC } from 'react'
+interface Props {
     title: string
 }
 const Menu: FC<Props> = ({ title }) => {

@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { type FC, useEffect } from 'react'
 import QuizImage from "assets/images/featured-category/category-1.jpeg"
 import Button from 'components/button/Button'
 import Radio from 'components/radio'
@@ -9,12 +9,12 @@ import { useRouter } from 'next/navigation'
 import useQuizTakingStore from 'store/quizTaking'
 
 
-const QuizDetails = () => {
+const QuizDetails: FC = () => {
     const { quiz, userProgress, selectAnswer, goToNextQuestion, goToPreviousQuestion, resetAnswers, computeScore } = useQuizTakingStore()
     const { currentQuestionIndex, selectedAnswers } = userProgress
     const router = useRouter()
-    const handleSubmission = () => {
-        //submit to backend and get a response
+    const handleSubmission = (): void => {
+        // submit to backend and get a response
         computeScore()
         router.push("/quiz/result")
     }
@@ -24,10 +24,10 @@ const QuizDetails = () => {
 
     const { formattedTime } = useQuizTimer({ durationInSeconds: 10, onTimeElapsed: handleSubmission });
 
-    const handleSelectedOption = (index: number) => {
-        selectAnswer(index)
+    const handleSelectedOption = (optionId: string): void => {
+        selectAnswer(optionId)
     }
-    const isLastQuestion = quiz && currentQuestionIndex === quiz.questions.length - 1
+    const isLastQuestion = (quiz != null) && currentQuestionIndex === quiz.questions.length - 1
     const isFirstQuestion = currentQuestionIndex === 0
     return (
         <div className='text-grayscale-90 p-5'>
@@ -49,7 +49,7 @@ const QuizDetails = () => {
                 </div>
                 <div className='space-y-10 flex-1'>
                     <div className='font-semibold text-2xl'>Question {currentQuestionIndex + 1}/{quiz?.questions.length} </div>
-                    <div className='text-xl'>{quiz?.questions[currentQuestionIndex].text}</div>
+                    <div className='text-xl'>{quiz?.questions[currentQuestionIndex].questionText}</div>
                 </div>
             </div>
 
@@ -58,10 +58,10 @@ const QuizDetails = () => {
             <div className='text-lg mt-6 flex flex-col gap-4 text-grayscale-90'>
                 {quiz?.questions[currentQuestionIndex].options.map(((option, index) =>
                     <div key={index} className='flex items-center gap-7'>
-                        <Radio onChange={() => handleSelectedOption(index)}
-                            checked={selectedAnswers[currentQuestionIndex] === index}
+                        <Radio onChange={() => { handleSelectedOption(option.id); }}
+                            checked={selectedAnswers[currentQuestionIndex] === option.id}
                             size="small" />
-                        <div>{option}</div>
+                        <div>{option.text}</div>
                     </div>
                 ))}
             </div>

@@ -1,5 +1,13 @@
 import '@testing-library/jest-dom';
 import 'react';
 import 'react-dom';
-import 'jest'; // Import jest to make expect available globally
+import { jest } from '@jest/globals';
 
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            pathname: '',
+            push: jest.fn(),
+        };
+    },
+}));

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import Button from 'components/button/Button'
 import TextArea from 'components/form/TextArea'
 import TextInput from 'components/form/TextInput'
@@ -11,15 +11,16 @@ import {
 import { Plus } from 'lucide-react'
 import { v4 as uuidv4 } from 'uuid';
 import { joiResolver } from '@hookform/resolvers/joi'
-import { FieldError, useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
 import quizService from 'services/quizService'
-import { AxiosError } from "axios"
+import { type AxiosError } from "axios"
 import { toast } from 'react-toastify'
 import { handleError } from 'utils/getAxiosErrorMessage'
 import { useRouter } from 'next/navigation'
 import { queryClient } from 'api/client'
 import { quizKeys } from 'constants/queryKeys'
+import { type QuizCreationData, type Option } from 'types/quiz'
 
 
 const schema = Joi.object({
@@ -47,7 +48,7 @@ const schema = Joi.object({
 });
 
 
-type Props = {
+interface Props {
     showModal: boolean
     closeModal: () => void
 }
@@ -56,7 +57,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
 
     const router = useRouter()
 
-    const { control, register, handleSubmit, formState: { errors, isValid }, watch, setValue } = useForm<QuizCreationData>({
+    const { control, register, handleSubmit, formState: { errors }, watch, setValue } = useForm<QuizCreationData>({
         resolver: joiResolver(schema),
         defaultValues: {
             title: '',
@@ -69,22 +70,24 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
         name: "questions"
     });
 
-    const onSubmit = (data: QuizCreationData) => {
-        console.log(data);
+    const onSubmit = (data: QuizCreationData): void => {
+        // console.log(data);
         // Perform submission logic here
         createQuiz(data)
     };
 
-    const handleAddQuestionClick = () => {
-        append({ questionText: '', id: uuidv4(), options: [{ text: '', id: uuidv4() }] })
+    const handleAddQuestionClick = (): void => {
+        append({ questionText: '', id: uuidv4(), correctAnswer: "", options: [{ text: '', id: uuidv4() }] })
     };
 
-    const handleAddOptionClick = (questionIndex: number) => {
+    const handleAddOptionClick = (questionIndex: number): void => {
         const newOption = { text: '', id: uuidv4() };
-        setValue(
-            `questions.${questionIndex}.options`,
-            [...((values.questions && values.questions[questionIndex]?.options) || []) as Option[], newOption]
-        );
+        setValue(`questions.${questionIndex}.options`, [
+            ...(values.questions?.[questionIndex]?.options ?? []) as Option[],
+            newOption as Option,
+        ]);
+
+
 
     };
 
@@ -94,7 +97,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
             toast.success("New Quiz created");
             router.push("/quiz")
             closeModal()
-            queryClient.invalidateQueries({ queryKey: [quizKeys.FIND_ALL] })
+            void queryClient.invalidateQueries({ queryKey: [quizKeys.FIND_ALL] })
         },
         onError(error: AxiosError) {
             toast(handleError(error), { type: "error" });
@@ -121,13 +124,13 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                                     <Field.Label required>Quiz name</Field.Label>
                                     <TextInput {...register("title")} />
                                     <Field.Error data-cy="login-form-password-error-label">
-                                        {errors.title && <span>{(errors.title as FieldError).message}</span>}
+                                        {(errors.title != null) && <span>{(errors.title).message}</span>}
                                     </Field.Error>
                                 </Field.Group>
                             </div>
 
                             <div>Questions</div>
-                            {values.questions && values.questions.map((question) =>
+                            {values.questions?.map((question) =>
                                 <div key={question.id} className='bg-white p-3'>
                                     {question.questionText}
                                 </div>
@@ -155,7 +158,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                                             {...register(`questions.${questionIndex}.questionText`)}
                                         />
                                         <Field.Error data-cy="login-form-password-error-label">
-                                            {<span>{errors.questions?.length && errors?.questions[questionIndex]?.questionText?.message}</span>}
+                                            {<span>{((errors.questions?.length) != null) && errors?.questions[questionIndex]?.questionText?.message}</span>}
                                         </Field.Error>
                                     </Field.Group>
                                     <div className='pl-5 flex flex-col gap-3'>
@@ -172,7 +175,7 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
                                                 </Field.Error>
                                             </Field.Group>
                                         )}
-                                        <Button variant="plain" className='w-[15rem]' onClick={() => handleAddOptionClick(questionIndex)}>
+                                        <Button variant="plain" className='w-[15rem]' onClick={() => { handleAddOptionClick(questionIndex); }}>
                                             <Plus />
                                             Add Option
                                         </Button>

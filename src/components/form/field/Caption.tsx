@@ -5,8 +5,9 @@ type CaptionProps = {
   cta?: {
     label: string;
     onClick: () => void;
-    htmlAttributes?: { [key: string]: string };
+    htmlAttributes?: Record<string, string>;
   };
+  className?: string
 } & React.HTMLAttributes<HTMLDivElement>;
 
 const Caption = React.forwardRef<HTMLDivElement, CaptionProps>(
@@ -20,12 +21,12 @@ const Caption = React.forwardRef<HTMLDivElement, CaptionProps>(
         )}
         {...props}
       >
-        {children && (
+        {children !== null && (
           <span className="flex items-center gap-1 text-grayscale-100">
             {children}
           </span>
         )}
-        {cta && (
+        {cta !== undefined && (
           <span
             onClick={cta.onClick}
             tabIndex={0}

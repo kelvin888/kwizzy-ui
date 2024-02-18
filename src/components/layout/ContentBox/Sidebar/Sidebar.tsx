@@ -1,15 +1,15 @@
 "use client"
-import React from 'react'
+import React, { type FC } from 'react'
 import MenuItem from './MenuItem/MenuItem'
 import { useRouter } from 'next/navigation'
 import { BookCheckIcon, LayoutDashboard, LogOut } from 'lucide-react'
 import Cookies from 'js-cookie'
 
-export const AdminSidebar = () => {
+export const AdminSidebar: FC = () => {
 
     const router = useRouter();
 
-    const handleLogout = () => {
+    const handleLogout = (): void => {
         Cookies.remove('authUser');
 
         router.push("/login")

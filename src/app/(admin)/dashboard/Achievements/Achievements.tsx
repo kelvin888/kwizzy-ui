@@ -5,7 +5,7 @@ import WinnerIcon from "assets/images/achievements/winner.png"
 import LuckIcon from "assets/images/achievements/luck.png"
 import { ProgressBar } from 'components/progressBar/ProgressBar'
 
-const Achievements = () => {
+const Achievements = (): React.JSX.Element => {
     return (
         <div className=''>
             <div className='flex items-center justify-between mb-4'>

@@ -6,12 +6,12 @@ interface UpdatedFontAwesomeIconProps extends Partial<any> {
   icon?: any
 }
 
-export type IconProps = {
+export interface IconProps {
   icon: any;
   iconProps?: UpdatedFontAwesomeIconProps;
   size?: IconSize;
   withoutBoundary?: boolean;
-} & any;
+}
 
 const GRID_SIZE = 4;
 
@@ -26,17 +26,20 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>(
     }
 
     const fontSize = getFontSize(size);
-    const boundarySize = withoutBoundary ? fontSize : fontSize + GRID_SIZE;
+    const boundarySize = (withoutBoundary ?? false) ? fontSize : fontSize + GRID_SIZE;
+
+    const containerStyle: React.CSSProperties = {
+      display: 'inline-flex',
+      width: boundarySize,
+      height: boundarySize,
+      alignItems: 'center',
+      justifyContent: 'center',
+    };
 
     return (
       <div
-        is="span"
         ref={ref}
-        display="inline-flex"
-        width={boundarySize}
-        height={boundarySize}
-        alignItems="center"
-        justifyContent="center"
+        style={containerStyle}
         {...props}
       >
         {icon}
@@ -45,7 +48,7 @@ const Icon = React.forwardRef<HTMLDivElement, IconProps>(
   },
 );
 
-function getFontSize(size: Exclude<IconSize, 'inherit'>) {
+function getFontSize(size: Exclude<IconSize, 'inherit'>): number {
   switch (size) {
     case 'sm':
       return GRID_SIZE * 3;

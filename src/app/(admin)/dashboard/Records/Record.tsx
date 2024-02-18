@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { type FC } from 'react'
 import Image from 'next/image'
-type Props = {
+interface Props {
     icon: string
     title: string
     value: string

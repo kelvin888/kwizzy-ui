@@ -4,14 +4,12 @@ import ProfileIcon from "assets/images/person.jpg"
 import Records from "./Records/Records";
 import Achievements from "./Achievements/Achievements";
 import FeaturedCategories from "./FeaturedCategories/FeaturedCategories";
-import { usePathname, useRouter } from "next/navigation";
 import { ProgressBar } from "components/progressBar/ProgressBar";
 
-export default function Dashboard() {
-    const path = usePathname()
+export default function Dashboard(): React.JSX.Element {
 
     return (
-        <div className="p-5">
+        <div className="p-5" data-cy="dashboard-container">
             <div className="flex items-start gap-6">
                 <div className="border-2 border-grayscale-20 rounded-[1.875rem] hidden xl:block">
                     <Image className="rounded-[1.875rem] w-[18.6rem]" src={ProfileIcon} alt="profile icon" />
