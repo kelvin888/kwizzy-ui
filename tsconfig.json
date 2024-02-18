@@ -9,7 +9,7 @@
     "noEmit": true,
     "strictNullChecks": true,
     "esModuleInterop": true,
-    "module": "nodenext",
+    "module": "NodeNext",
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
