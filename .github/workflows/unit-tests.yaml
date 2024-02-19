@@ -50,4 +50,4 @@ jobs:
           ref: ${{ github.event.before }}
 
       - name: Install dependencies
-        run:
+        run: npm install
