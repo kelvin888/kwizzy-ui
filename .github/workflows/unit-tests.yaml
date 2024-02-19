@@ -49,8 +49,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Set the deployed URL as an environment variable
+      - name: Set Environment Variable
+        run: echo "CYPRESS_BASE_URL=${{ steps.vercel-deployment.outputs.deployment_url }}" >> $GITHUB_ENV
+
       - name: Install Cypress
         run: npm install cypress --save-dev
 
       - name: Run Cypress tests
-        run: npm run cypress:prod
+        run: cypress run
