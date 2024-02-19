@@ -28,4 +28,4 @@ jobs:
         run: npm run test
 
       - name: Run end-to-end tests
-        run: npx run cypress:prod
+        run: npm run cypress:prod
