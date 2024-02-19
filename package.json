@@ -9,7 +9,7 @@
     "lint": "next lint",
     "test": "jest",
     "cypress:dev": "CYPRESS_BASE_URL=http://localhost:3000 cypress run",
-    "cypress:prod": "cypress open --config-file cypress.production.json",
+    "cypress:prod": "CYPRESS_BASE_URL=https://kwizzy.netlify.app cypress run",
     "prepare": "husky"
   },
   "lint-staged": {
