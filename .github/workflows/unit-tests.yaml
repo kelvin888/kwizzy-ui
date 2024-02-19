@@ -16,9 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Deploy to Vercel
+      - name: Login to Vercel
+        run: vercel login
+
+      - name: Verify Token
+        run: echo "Vercel Token: $VERCEL_TOKEN"
+
       - name: Deploy to Vercel
-        run: vercel --prod -y
+        run: vercel --prod -y --token $VERCEL_TOKEN
 
       # Get deployment URL
       - name: Get Deployment URL
