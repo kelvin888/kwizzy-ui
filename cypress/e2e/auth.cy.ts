@@ -1,7 +1,7 @@
 describe("Authentication", () => {
   it("Users can login", () => {
     // Visit the base URL defined in the Cypress configuration
-    cy.visit(Cypress.config("baseUrl"));
+    cy.visit(Cypress.env("baseUrl"));
 
     // Click on the login button
     // Wait for a specific condition

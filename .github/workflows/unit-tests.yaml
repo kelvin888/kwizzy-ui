@@ -57,4 +57,4 @@ jobs:
         run: npm install cypress --save-dev
 
       - name: Run Cypress tests
-        run: npx cypress run
+        run: npx cypress run --env baseUrl=${{ steps.vercel-deployment.outputs.deployment_url }}
