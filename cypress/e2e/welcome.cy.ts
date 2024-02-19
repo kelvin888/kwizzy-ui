@@ -13,7 +13,7 @@
 
 describe("example to-do app", () => {
   it("displays the landing page", () => {
-    cy.visit("http://localhost:3000");
+    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
     cy.get("[data-cy=home-container]").should("exist");
   });
 });
