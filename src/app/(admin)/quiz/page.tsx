@@ -23,8 +23,6 @@ const Page: FC = () => {
         setshowcreateQuizModal(false)
     }
 
-    // console.log("quizResponse", quizzes?.data);
-
 
     return (
         <div className='p-5 flex flex-col gap-5' data-cy="quiz-container" data-testid="quiz-container">
