@@ -1,26 +1,22 @@
-// describe("Onboarding", () => {
-//   it("Users can sign up", () => {
-//     cy.visit("http://localhost:3000");
-//   });
-// });
-
 describe("Authentication", () => {
   it("Users can login", () => {
-    cy.visit("http://localhost:3000");
+    // Visit the base URL defined in the Cypress configuration
+    cy.visit(Cypress.config("baseUrl"));
 
-    cy.get('[data-cy="header-login-btn"]').click();
+    console.log("CYPRESS", Cypress.config("baseUrl"));
 
-    cy.get('[data-testid="login-username"]').type("kev@gmail.com");
-    cy.get('[data-testid="login-password"]').type("kev1234");
+    // Click on the login button
+    // Wait for a specific condition
+    cy.get('[data-testid="header-login-btn"]').click();
 
+    // Type the username and password obtained from environment variables
+    cy.get('[data-testid="login-username"]').type(Cypress.env("username"));
+    cy.get('[data-testid="login-password"]').type(Cypress.env("password"));
+
+    // Click on the login button
     cy.get('[data-testid="login-button"]').click();
 
+    // Check if the quiz container exists after successful login
     cy.get('[data-cy="quiz-container"]').should("exist");
   });
-  // it.skip("Users can logout", () => {
-  //   cy.visit("http://localhost:3000");
-  // });
-  // it.skip("Users can reset their passwords", () => {
-  //   cy.visit("http://localhost:3000");
-  // });
 });

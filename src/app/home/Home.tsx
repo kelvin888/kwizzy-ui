@@ -8,7 +8,7 @@ import Footer from './Footer/Footer'
 
 const Home: FC = () => {
     return (
-        <main data-testid="home-container">
+        <main data-testid="home-container" data-cy="home-container">
             <Container>
                 <Header />
                 <Hero />

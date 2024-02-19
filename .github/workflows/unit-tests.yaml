@@ -28,4 +28,4 @@ jobs:
         run: npm run test
 
       - name: Run end-to-end tests
-        run: npx cypress run
+        run: CYPRESS_BASE_URL=https://kwizzy.netlify.app cypress run

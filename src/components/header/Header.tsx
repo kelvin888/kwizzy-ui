@@ -8,6 +8,8 @@ import TopNav from './TopNav/TopNav'
 const Header: FC = () => {
     const router = useRouter()
     const navigateToLogin = (): void => {
+        console.log("navigate");
+
         router.push("/login")
     }
     return (
@@ -15,7 +17,7 @@ const Header: FC = () => {
             <Logo />
             <div className='flex items-center gap-20'>
                 <TopNav />
-                <Button data-cy="header-login-btn" variant="secondary" buttonType="outlined" size="large" onClick={navigateToLogin}>Login</Button>
+                <Button data-testid="header-login-btn" variant="secondary" buttonType="outlined" size="large" onClick={navigateToLogin}>Login</Button>
             </div>
         </div>
     )
