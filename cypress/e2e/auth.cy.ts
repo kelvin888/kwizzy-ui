@@ -3,8 +3,6 @@ describe("Authentication", () => {
     // Visit the base URL defined in the Cypress configuration
     cy.visit(Cypress.config("baseUrl"));
 
-    console.log("CYPRESS", Cypress.config("baseUrl"));
-
     // Click on the login button
     // Wait for a specific condition
     cy.get('[data-testid="header-login-btn"]').click();
