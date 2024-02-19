@@ -3,7 +3,7 @@ name: Deploy and Test
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
@@ -34,10 +34,18 @@ jobs:
     needs: deploy
     env:
       CYPRESS_BASE_URL: ${{ needs.deploy.outputs.deployment_url }}
+      NODE_VERSION: 20.7.0
 
     steps:
-      - name: Checkout code
+      - name: Use Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies and checkout code
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.before }}
 
       - name: Install dependencies
         run: npm install
