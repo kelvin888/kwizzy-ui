@@ -71,7 +71,6 @@ const QuizCreation: FC<Props> = ({ showModal, closeModal }) => {
     });
 
     const onSubmit = (data: QuizCreationData): void => {
-        // console.log(data);
         // Perform submission logic here
         createQuiz(data)
     };
