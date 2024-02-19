@@ -5,7 +5,7 @@ import { config } from "dotenv";
 
 const environment =
   process.env.REACT_APP_MODE === "development" ? ".env.local" : ".env.test";
-console.log("environment", process.env);
+console.log("environment", process.env.CYPRESS_BASE_URL);
 
 config({ path: environment });
 
