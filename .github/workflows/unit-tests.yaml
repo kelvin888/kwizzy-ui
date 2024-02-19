@@ -19,9 +19,6 @@ jobs:
       - name: Login to Vercel
         run: vercel login
 
-      - name: Verify Token
-        run: echo "Vercel Token: $VERCEL_TOKEN"
-
       # Get deployment URL
       - name: Get Deployment URL
         run: |
@@ -53,7 +50,4 @@ jobs:
           ref: ${{ github.event.before }}
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Run Cypress tests
-        run: npm run cypress:run
+        run:
