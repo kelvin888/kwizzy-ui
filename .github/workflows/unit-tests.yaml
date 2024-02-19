@@ -26,6 +26,7 @@ jobs:
         run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
 
       - name: Get Deployment URL
+        id: get-deployment-url
         run: |
           DEPLOYMENT_URL=$(vercel alias ls | awk '{print $3}')
           echo "Deployment URL: $DEPLOYMENT_URL"
@@ -57,4 +58,4 @@ jobs:
         run: npm install cypress --save-dev
 
       - name: Run Cypress tests
-        run: npx cypress run --env baseUrl="${{ steps.Get Deployment URL.outputs.deployment_url }}"
+        run: npx cypress run --env baseUrl="${{ steps.get-deployment-url.outputs.deployment_url }}"
