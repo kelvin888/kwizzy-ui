@@ -8,7 +8,6 @@ import TopNav from './TopNav/TopNav'
 const Header: FC = () => {
     const router = useRouter()
     const navigateToLogin = (): void => {
-        console.log("navigate");
 
         router.push("/login")
     }
