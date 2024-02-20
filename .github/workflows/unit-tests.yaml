@@ -28,7 +28,7 @@ jobs:
       - name: Get Deployment URL
         id: get-deployment-url
         run: |
-          DEPLOYMENT_URL=$(vercel alias ls --token $VERCEL_TOKEN | awk '{print $3}')
+          DEPLOYMENT_URL=$(vercel alias ls --token=${{ secrets.VERCEL_TOKEN }} | awk '{print $3}')
           echo "Deployment URL: $DEPLOYMENT_URL"
           echo "::set-output name=deployment_url::$DEPLOYMENT_URL"
 
