@@ -1,7 +1,7 @@
 "use client"
 import Cookies from 'js-cookie';
 import Image from 'next/image'
-import React from 'react'
+import React, { type FC } from 'react'
 import QuoteBorder from "assets/images/quote-border.svg"
 import BackArrow from "assets/images/icons/back-arrow.svg"
 import Field from 'components/form/field'
@@ -15,16 +15,16 @@ import Joi from 'joi';
 import { toast } from 'react-toastify'
 import authService from 'services/authService'
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError } from "axios"
+import { type AxiosError } from "axios"
 import { handleError } from 'utils/getAxiosErrorMessage'
-import { LoginDataType } from 'types/auth'
+import { type LoginDataType } from 'types/auth'
 
 const schema = Joi.object({
     email: Joi.string().email({ tlds: { allow: false } }),
     password: Joi.string().required(),
 });
 
-const Login = () => {
+const Login: FC = () => {
     const router = useRouter()
 
     const { register, handleSubmit, formState } = useForm<LoginDataType>({
@@ -42,6 +42,10 @@ const Login = () => {
         },
     });
 
+    const onSubmit = (data: LoginDataType): void => {
+        authenticateUser(data);
+    }
+
     return (
         <div className='flex w-full h-screen'>
             <div className='w-[45%] h-full bg-login-bg bg-no-repeat bg-cover hidden xl:block'>
@@ -57,7 +61,7 @@ const Login = () => {
             </div>
             <div className='w-full xl:w-[55%] h-full flex items-center justify-center overflow-y-auto overflow-x-hidden'>
                 <div className='flex flex-col min-w-[37rem] items-center'>
-                    <div className='flex gap-2 justify-start w-full text-grayscale-60 cursor-pointer' onClick={() => router.push("/")}>
+                    <div className='flex gap-2 justify-start w-full text-grayscale-60 cursor-pointer' onClick={() => { router.push("/"); }}>
                         <Image src={BackArrow} alt='back arrow' />
                         <span>back</span>
                     </div>
@@ -69,18 +73,18 @@ const Login = () => {
 
                         <form
                             className="flex flex-col gap-5"
-                            onSubmit={handleSubmit(data => authenticateUser(data))}
+                            onSubmit={handleSubmit(onSubmit)}
                             id="login-form"
                             data-cy="login-form"
                         >
                             <Field.Group>
                                 <Field.Label className='mb-2'>Email address*</Field.Label>
                                 <TextInput
-                                    required={true}
                                     placeholder='Enter email address'
                                     className='text-grayscale-50'
                                     {...register('email')}
                                     error={!!formState.errors.email?.message}
+                                    data-testid="login-username"
                                 />
                                 <Field.Error data-cy="login-form-password-error-label">
                                     {formState.errors.email?.message}
@@ -89,17 +93,20 @@ const Login = () => {
                             <Field.Group>
                                 <Field.Label>Enter Password*</Field.Label>
                                 <TextInput
-                                    required
                                     placeholder='password'
                                     type='password'
                                     {...register('password')}
+                                    data-testid="login-password"
+                                    error={!!formState.errors.password?.message}
                                 />
                                 <Field.Error data-cy="login-form-password-error-label">
                                     {formState.errors.password?.message}
                                 </Field.Error>
                             </Field.Group>
 
-                            <Button variant="tertiary" type='submit' isLoading={isPending}>Login</Button>
+                            <Button
+                                data-testid="login-button"
+                                variant="tertiary" type='submit' isLoading={isPending}>Login</Button>
                             <div className='flex justify-between gap-3 items-center text-grayscale-40'>
                                 <div className='h-[1px] bg-grayscale-30 flex-1'>&nbsp;</div>
                                 <div>Or</div>

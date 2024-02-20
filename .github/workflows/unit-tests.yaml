@@ -1,0 +1,58 @@
+name: Deploy and Test
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel@latest
+
+      - name: Deploy to Vercel and Get Deployment URL
+        run: |
+          vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
+          vercel alias --scope ${{ secrets.VERCEL_ORG_ID }} --token=${{ secrets.VERCEL_TOKEN }} set "$(cat deployment-url.txt)" kwizzy-ui-preview.vercel.app
+
+      - name: Set Environment Variable for Cypress Base URL
+        run: echo "CYPRESS_BASE_URL=https://kwizzy-ui-preview.vercel.app" >> $GITHUB_ENV
+
+  test:
+    runs-on: ubuntu-latest
+    needs: deploy
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20.7.0
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      - name: Set Environment Variable for Cypress
+        run: echo "CYPRESS_BASE_URL=https://kwizzy-ui-preview.vercel.app" >> $GITHUB_ENV
+
+      - name: Run Cypress tests
+        run: |
+          npx cypress run --env CYPRESS_BASE_URL=https://kwizzy-ui-preview.vercel.app

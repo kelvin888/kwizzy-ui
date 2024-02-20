@@ -2,7 +2,7 @@ import Image from 'next/image'
 import React from 'react'
 import FullLogo from "assets/images/logo-large.svg"
 
-const Logo = () => {
+const Logo = (): React.JSX.Element => {
     return (
         <div>
             <Image src={FullLogo} alt='main logo' priority />

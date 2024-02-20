@@ -2,13 +2,21 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
 import Home from "../app/page"
 
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            pathname: '',
+            push: jest.fn()
+        };
+    },
+}));
+
 describe('Rendering', () => {
     it('Shows a welcome message', () => {
         render(<Home />);
-        const welcomeMessage = screen.getByTestId('welcome-text');
+        const homeContainer = screen.getByTestId('home-container');
 
-        expect(welcomeMessage).toBeInTheDocument();
-        expect(welcomeMessage).toHaveTextContent('Welcome to the App!');
+        expect(homeContainer).toBeInTheDocument();
 
     });
 });

@@ -1,10 +1,10 @@
 import TextInput from 'components/form/TextInput'
-import React from 'react'
+import React, { type FC } from 'react'
 import SearchIcon from "assets/images/icons/search.svg"
 import ProfileIcon from "assets/images/profile.svg"
 import Image from 'next/image'
 const name = "Kelvin"
-export const AdminHeader = () => {
+export const AdminHeader: FC = () => {
     return (
         <div className='fixed top-0 z-20 bg-grayscale-20 flex h-[8.313rem] w-full items-center opacity-100 px-10'>
             <div className='text-grayscale-90 font-extrabold text-3xl'>Quiz Time</div>

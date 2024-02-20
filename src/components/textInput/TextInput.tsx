@@ -1,10 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { type ReactNode } from 'react';
 import clsx from 'clsx';
 
 export type TextInputProps = {
     error?: boolean;
     iconBefore?: ReactNode;
     iconAfter?: ReactNode;
+    className?: string;
 } & React.DetailedHTMLProps<
     React.InputHTMLAttributes<HTMLInputElement>,
     HTMLInputElement
@@ -16,7 +17,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
         return (
             <div className="relative">
-                {iconBefore && (
+                {iconBefore !== null && (
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 text-grayscale-100">
                         {iconBefore}
                     </div>
@@ -28,14 +29,14 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
                         {
                             'pl-10': iconBefore,
                             'pr-10': iconAfter,
-                            'ring-grayscale-30 focus:ring-primary-100': !error,
+                            'ring-grayscale-30 focus:ring-primary-100': !(error ?? false),
                             'ring-danger-100': error,
                         },
                         className,
                     )}
                     {...rest}
                 />
-                {iconAfter && (
+                {iconAfter !== null && (
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 text-grayscale-100">
                         {iconAfter}
                     </div>

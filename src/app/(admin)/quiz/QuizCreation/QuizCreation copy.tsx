@@ -55,7 +55,6 @@
 //     const { addQuestion, questions } = useQuizCreationStore()
 
 //     const onSubmit = (data: QuizCreationData) => {
-//         console.log(data);
 //         // Perform submission logic here
 //     };
 

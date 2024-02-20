@@ -5,7 +5,7 @@ import CelebrationIcon from "assets/images/celebration.svg"
 import useQuizTakingStore from 'store/quizTaking'
 // import FailureIcon from "assets/images/failure-illustration.svg"
 
-const Page = () => {
+const Page = (): React.JSX.Element => {
     const { userProgress: { correctAnswersCount }, quiz } = useQuizTakingStore()
     return (
         <div className='flex flex-col items-center p-5'>

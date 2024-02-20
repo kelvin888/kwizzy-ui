@@ -11,11 +11,11 @@
 // please read our getting started guide:
 // https://on.cypress.io/introduction-to-cypress
 
-describe('example to-do app', () => {
-
-  it('displays the landing page', () => {
-    cy.visit('http://localhost:3000')
-    cy.get('[data-cy=welcome-text]').should("exist")
-  })
-
-})
+describe("example to-do app", () => {
+  it("displays the landing page", () => {
+    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
+    cy.log("Before clicking the login button");
+    cy.get("[data-cy=home-container]").should("exist");
+    cy.log("After clicking the login button");
+  });
+});

@@ -1,12 +1,12 @@
 import Logo from 'components/logo/Logo'
 import Image from 'next/image'
-import React from 'react'
+import React, { type FC } from 'react'
 import Social1 from "assets/images/social/social1.svg"
 import Twitter from "assets/images/social/twitter.svg"
 import LinkedIn from "assets/images/social/linkedin.svg"
 import Instagram from "assets/images/social/instagram.svg"
 
-const Footer = () => {
+const Footer: FC = () => {
     return (
         <div className='px-24 bg-gradient-grayscale flex justify-between items-center'>
             <Logo />

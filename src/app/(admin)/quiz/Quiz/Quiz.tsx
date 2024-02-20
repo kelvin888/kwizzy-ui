@@ -1,6 +1,7 @@
-import React, { FC } from 'react'
-type Props = {
-    quizData: Quiz
+import React, { type FC } from 'react'
+import { type QuizType } from 'types/quiz'
+interface Props {
+    quizData: QuizType
 }
 const Quiz: FC<Props> = ({ quizData }) => {
     return (

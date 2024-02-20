@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { type FC } from 'react'
 import HomeIllustration from "assets/images/homepage-illustration.svg"
 import caretDown from "assets/images/caret-down.svg"
 import Button from 'components/button/Button'
 
-const Hero = () => {
+const Hero: FC = () => {
     return (
         <div className='px-24 pb-24 flex flex-wrap xl:flex-nowrap justify-center'>
             <div className='self-center xl:pl-24 pt-24'>

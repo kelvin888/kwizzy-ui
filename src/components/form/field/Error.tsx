@@ -2,29 +2,31 @@ import React from 'react';
 
 import clsx from 'clsx';
 
-const Error = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, className, ...props }, ref) => {
-  if (!children) {
-    return null
-  }
+interface ErrorProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+}
 
-  return (
-    <div
-      ref={ref}
-      className={clsx(
-        'flex select-none items-center gap-1 text-sm text-danger-100',
-        className,
-      )}
-      {...props}
-    >
-      {/* <Icon icon={faExclamationCircle} /> */}
-      {children}
-    </div>
-  );
-});
+const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
+  ({ children, className, ...props }, ref) => {
+    if (!children) {
+      return null;
+    }
 
-Error.displayName = "Input Error"
+    return (
+      <div
+        ref={ref}
+        className={clsx(
+          'flex select-none items-center gap-1 text-sm text-danger-100',
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </div>
+    );
+  },
+);
+
+Error.displayName = "Input Error";
 
 export default Error;

@@ -1,3 +1,1 @@
-const DATA_CY = {
-    
-}
+export const DATA_CY = {};

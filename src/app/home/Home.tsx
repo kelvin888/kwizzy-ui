@@ -1,14 +1,14 @@
 import Container from 'components/Container'
 import Header from 'components/header/Header'
-import React from 'react'
+import React, { type FC } from 'react'
 import Hero from './Hero/Hero'
 import Features from './Features/Features'
 import LearningJourney from './LearningJourney/LearningJourney'
 import Footer from './Footer/Footer'
 
-const Home = () => {
+const Home: FC = () => {
     return (
-        <main>
+        <main data-testid="home-container" data-cy="home-container">
             <Container>
                 <Header />
                 <Hero />

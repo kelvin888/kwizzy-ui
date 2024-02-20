@@ -1,9 +1,8 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from "cypress";
 
 export default defineConfig({
-    e2e: {
-        setupNodeEvents(on, config) { },
-        baseUrl: 'http://localhost:3000',
-    },
-})
-
+  e2e: {
+    // You may want to clean this up later by importing these.
+    baseUrl: process.env.CYPRESS_BASE_URL || "http://localhost:3000",
+  },
+});

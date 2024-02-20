@@ -13,7 +13,7 @@ const quicksand = Quicksand({
   variable: '--font-quicksand',
 })
 
-const lily_script_one = Lily_Script_One({
+const lilyScriptOne = Lily_Script_One({
   subsets: ['latin'],
   display: "swap",
   variable: '--lily-script-one',
@@ -48,10 +48,10 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
-}) {
+}): JSX.Element {
 
   return (
-    <html lang="en" className={`${quicksand.className} ${avertaBold.className} ${avertaSemiBold.className} ${lily_script_one.className} ${poppins.className}`}>
+    <html lang="en" className={`${quicksand.className} ${avertaBold.className} ${avertaSemiBold.className} ${lilyScriptOne.className} ${poppins.className}`}>
       <body>
         <Providers>
           <ToastContainer />

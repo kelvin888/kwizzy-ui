@@ -6,7 +6,7 @@ export default function QuizLayout({
     children,
 }: {
     children: React.ReactNode
-}) {
+}): JSX.Element {
 
     return (
         <section className='bg-grayscale-20 relative h-screen  w-screen overflow-x-hidden'>

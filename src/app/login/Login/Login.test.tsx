@@ -1,39 +1,96 @@
-// __tests__/login.test.js
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { act } from 'react-dom/test-utils'; // Import 'act' for asynchronous testing
-import LoginPage from 'app/login/page';
+import { waitFor, fireEvent, render } from '@testing-library/react';
 import Login from './Login';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-describe('Login Page', () => {
-    test('renders login page with login component', () => {
-        const { getByText, getByLabelText } = render(<Login onLogin={() => null} />);
-        // expect(getByText('Login Page')).toBeInTheDocument();
-        // expect(getByLabelText('Username:')).toBeInTheDocument();
-        // expect(getByLabelText('Password:')).toBeInTheDocument();
+jest.mock('next/navigation', () => ({
+    useRouter() {
+        return {
+            pathname: '',
+            push: jest.fn()
+        };
+    },
+}));
+
+
+jest.mock("react-toastify", () => ({
+    toast: {
+        success: jest.fn(),
+        error: jest.fn()
+    },
+}));
+
+describe('Login Component', () => {
+    it('renders login form fields', () => {
+        const queryClient = new QueryClient()
+        const { getByTestId } = render(<QueryClientProvider client={queryClient}><Login /></QueryClientProvider>);
+        expect(getByTestId('login-username')).toBeInTheDocument();
+        expect(getByTestId('login-password')).toBeInTheDocument();
     });
 
-    test('allows user to input credentials and handle login', async () => {
-        // const { getByLabelText, getByText } = render(<Login onLogin={() => null} />);
+    it('allows user to input credentials', async () => {
+        const queryClient = new QueryClient()
+        const { getByTestId } = render(<QueryClientProvider client={queryClient}><Login /></QueryClientProvider>);
+        const usernameInput = getByTestId('login-username');
+        const passwordInput = getByTestId('login-password');
 
-        // await act(async () => {
-        //     fireEvent.change(getByLabelText('Username:'), { target: { value: 'testuser' } });
-        //     fireEvent.change(getByLabelText('Password:'), { target: { value: 'password123' } });
-        //     fireEvent.click(getByText('Login'));
-        // });
+        fireEvent.change(usernameInput, { target: { value: 'testuser@gmail.com' } });
+        fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
 
-        // Add assertions based on your specific scenario, e.g., expect redirection or success message
+        expect(usernameInput).toHaveValue('testuser@gmail.com');
+        expect(passwordInput).toHaveValue('testpassword');
     });
 
-    test('handles login with invalid credentials', async () => {
-        // const { getByLabelText, getByText } = render(<Login onLogin={() => null} />);
+    it('submits the form with user input', async () => {
+        const queryClient = new QueryClient()
+        const { getByTestId } = render(<QueryClientProvider client={queryClient}><Login /></QueryClientProvider>);
+        const usernameInput = getByTestId('login-username');
+        const passwordInput = getByTestId('login-password');
+        const submitButton = getByTestId('login-button');
 
-        // await act(async () => {
-        //     fireEvent.change(getByLabelText('Username:'), { target: { value: 'invaliduser' } });
-        //     fireEvent.change(getByLabelText('Password:'), { target: { value: 'invalidpassword' } });
-        //     fireEvent.click(getByText('Login'));
-        // });
+        fireEvent.change(usernameInput, { target: { value: 'testuser@gmail.com' } });
+        fireEvent.change(passwordInput, { target: { value: 'testpassword' } });
 
-        // Add assertions based on your specific scenario, e.g., expect error message
+        fireEvent.click(submitButton);
+
+        // Add assertions for form submission handling, such as redirecting to the quiz page
+        await waitFor(() => {
+            // Add an assertion for the expected behavior after form submission, e.g., redirecting to the quiz page
+        });
+    });
+
+    it('displays error message for invalid email format', async () => {
+        const queryClient = new QueryClient()
+        const { getByTestId, getByText } = render(<QueryClientProvider client={queryClient}><Login /></QueryClientProvider>);
+        const usernameInput = getByTestId('login-username');
+        const submitButton = getByTestId('login-button');
+
+        fireEvent.change(usernameInput, { target: { value: 'invalidemailformat' } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(getByText(/"email" must be a valid email/i)).toBeInTheDocument();
+        });
+    });
+
+    it('displays error message for empty password', async () => {
+        const queryClient = new QueryClient()
+        const { getByTestId, getByText } = render(<QueryClientProvider client={queryClient}><Login /></QueryClientProvider>);
+        const passwordInput = getByTestId('login-password');
+        const submitButton = getByTestId('login-button');
+
+        fireEvent.change(passwordInput, { target: { value: '' } });
+        fireEvent.click(submitButton);
+
+        await waitFor(() => {
+            expect(getByText(/"password" is not allowed to be empty/i)).toBeInTheDocument()
+        });
+    });
+
+    it('displays success message after successful login', async () => {
+        // Mock successful login response using jest.fn()
+        // Render the component
+        // Submit the form
+        // Assert that the success message is displayed
     });
 });

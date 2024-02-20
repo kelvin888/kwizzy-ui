@@ -1,12 +1,12 @@
 import { Feature } from 'components/feature/Feature'
 import Image from 'next/image'
-import React from 'react'
+import React, { type FC } from 'react'
 import JourneyItem1 from 'assets/images/journey/journey-item1.svg'
 import JourneyItem2 from 'assets/images/journey/journey-item2.svg'
 import JourneyItem3 from 'assets/images/journey/journey-item3.svg'
 import JourneyItem4 from 'assets/images/journey/journey-item4.svg'
 
-const LearningJourney = () => {
+const LearningJourney: FC = () => {
     return (
         <div className='px-24 py-36'>
             <div className='text-[3.375rem] text-center xl:text-left xl:max-w-[29rem]'>

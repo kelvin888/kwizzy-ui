@@ -39,7 +39,7 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
                 "": state.isFocused,
                 "!bg-grayscale-5 !pointer-events-auto !cursor-not-allowed":
                   state.isDisabled,
-                "ring-danger-100": !!props["aria-invalid"],
+                "ring-danger-100": props["aria-invalid"] === true,
               }
             )
           ),
@@ -64,8 +64,8 @@ const CustomSelect: React.FC<CustomSelectProps> = (props) => {
         menu: () => "!shadow-xl !border-0 !rounded-[10px]",
         placeholder: (state) =>
           clsx("!text-grayscale-50", {
-            "": !state.isDisabled,
-            "": state.isDisabled,
+            // "": !state.isDisabled,
+            // "": state.isDisabled,
           }),
       }}
       {...props}

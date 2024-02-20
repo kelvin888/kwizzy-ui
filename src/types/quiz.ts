@@ -1,30 +1,30 @@
-type Option = {
-    id: string;
-    text: string;
-};
-
-type Quiz = {
-    id: string;
-    title: string;
-    questions: Question[];
-};
-
-interface Question {
-    id: string
-    questionText: string;
-    options: Option[];
+export interface Option {
+  id: string;
+  text: string;
 }
 
-interface QuizCreationData {
-    title: string;
-    questions: Question[];
+export interface QuizType {
+  id: string;
+  title: string;
+  questions: Question[];
 }
 
-interface QuizCreationResponseData {
-    data: QuizCreationData
+export interface Question {
+  id: string;
+  questionText: string;
+  options: Option[];
+  correctAnswer: string;
 }
 
-interface QuizResponseData {
-    data: Quiz[]
+export interface QuizCreationData {
+  title: string;
+  questions: Question[];
 }
 
+export interface QuizCreationResponseData {
+  data: QuizCreationData;
+}
+
+export interface QuizResponseData {
+  data: QuizType[];
+}

@@ -1,6 +1,6 @@
-import React, { FC, ReactNode } from 'react'
+import React, { type FC, type ReactNode } from 'react'
 import { AdminContent } from './Content/Content'
-type Props = {
+interface Props {
     children: ReactNode
 }
 export const ContentBox: FC<Props> = ({ children }) => {
@@ -12,5 +12,3 @@ export const ContentBox: FC<Props> = ({ children }) => {
         </div >
     )
 }
-
-{/* <div className='absolute top-[3.875rem] w-full px-8 pb-8 md:left-48 md:w-[calc(100vw_-_12rem)]'> */ }

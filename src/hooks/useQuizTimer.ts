@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface QuizTimerProps {
   durationInSeconds: number;
@@ -10,7 +10,10 @@ interface QuizTimer {
   formattedTime: string;
 }
 
-const useQuizTimer = ({ durationInSeconds, onTimeElapsed }: QuizTimerProps): QuizTimer => {
+const useQuizTimer = ({
+  durationInSeconds,
+  onTimeElapsed,
+}: QuizTimerProps): QuizTimer => {
   const [timer, setTimer] = useState(durationInSeconds);
 
   useEffect(() => {
@@ -23,7 +26,7 @@ const useQuizTimer = ({ durationInSeconds, onTimeElapsed }: QuizTimerProps): Qui
           const newTimer = prevTimer > 0 ? prevTimer - 1 : 0;
 
           // Trigger the action when the timer reaches zero
-          if (newTimer === 0 && onTimeElapsed) {
+          if (newTimer === 0 && onTimeElapsed != null) {
             onTimeElapsed();
           }
 
@@ -40,7 +43,7 @@ const useQuizTimer = ({ durationInSeconds, onTimeElapsed }: QuizTimerProps): Qui
   const formatTime = (timeInSeconds: number): string => {
     const minutes = Math.floor(timeInSeconds / 60);
     const seconds = timeInSeconds % 60;
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
   };
 
   return {

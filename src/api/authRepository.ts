@@ -1,6 +1,6 @@
 import { authUrls } from "constants/apiUrls/auth";
 import { get, post } from "./client";
-import {  AuthResponseData, LoginDataType } from "types/auth";
+import { type AuthResponseData, type LoginDataType } from "types/auth";
 
 export const authRepository = {
   registerUser: async () => {
@@ -22,4 +22,3 @@ export const authRepository = {
     return await get(authUrls.UPDATE_USER);
   },
 };
-
