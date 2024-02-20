@@ -23,12 +23,13 @@ jobs:
         run: npm install -g vercel@latest
 
       - name: Deploy to Vercel
-        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: |
+          vercel --prod --token=${{ secrets.VERCEL_TOKEN }} > deployment-url.txt
 
       - name: Get Deployment URL
         id: get-deployment-url
         run: |
-          DEPLOYMENT_URL=$(vercel alias ls --token=${{ secrets.VERCEL_TOKEN }} | awk '/https:\/\/.*\.vercel\.app/{print $2}')
+          DEPLOYMENT_URL=$(<deployment-url.txt)
           echo "Deployment URL: $DEPLOYMENT_URL"
           echo "::set-output name=deployment_url::$DEPLOYMENT_URL"
 
