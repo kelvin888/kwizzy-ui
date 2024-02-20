@@ -50,5 +50,9 @@ jobs:
       - name: Install Cypress
         run: npm install cypress --save-dev
 
+      - name: Set Environment Variable for Cypress
+        run: echo "CYPRESS_BASE_URL=https://kwizzy-ui-preview.vercel.app" >> $GITHUB_ENV
+
       - name: Run Cypress tests
-        run: npx cypress run
+        run: |
+          npx cypress run --env CYPRESS_BASE_URL=https://kwizzy-ui-preview.vercel.app
