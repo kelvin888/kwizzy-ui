@@ -1,6 +1,0 @@
-{
-    "REACT_APP_MODE": "production",
-    "CYPRESS_BASE_URL": "https://kwizzy.netlify.app",
-    "CYPRESS_USERNAME": "kev@gmail.com",
-    "CYPRESS_PASSWORD": "kev1234"
-}

@@ -13,7 +13,7 @@
 
 describe("example to-do app", () => {
   it("displays the landing page", () => {
-    cy.visit(Cypress.env("baseUrl"));
+    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
     cy.log("Before clicking the login button");
     cy.get("[data-cy=home-container]").should("exist");
     cy.log("After clicking the login button");
