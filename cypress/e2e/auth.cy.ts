@@ -1,7 +1,7 @@
 describe("Authentication", () => {
   it("Users can login", () => {
     // Visit the base URL defined in the Cypress configuration
-    console.log("envmt", Cypress.env("username"));
+    console.log("envmt", Cypress.env("CYPRESS_BASE_URL"));
     cy.visit(Cypress.env("CYPRESS_BASE_URL"));
 
     // Click on the login button

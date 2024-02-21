@@ -1,17 +1,21 @@
-import { Feature } from 'components/feature/Feature'
-import Image from 'next/image'
-import React, { type FC } from 'react'
 import JourneyItem1 from 'assets/images/journey/journey-item1.svg'
 import JourneyItem2 from 'assets/images/journey/journey-item2.svg'
 import JourneyItem3 from 'assets/images/journey/journey-item3.svg'
 import JourneyItem4 from 'assets/images/journey/journey-item4.svg'
+import RevealOnScroll from 'components/RevealOnScroll/RevealOnScroll'
+import { Feature } from 'components/feature/Feature'
+import Image from 'next/image'
+import { type FC } from 'react'
 
 const LearningJourney: FC = () => {
     return (
         <div className='px-24 py-36'>
-            <div className='text-[3.375rem] text-center xl:text-left xl:max-w-[29rem]'>
-                Let’ checkout your <span className='text-secondary-100'>learning</span> journey
-            </div>
+            <RevealOnScroll direction='left'>
+                <div className='text-[3.375rem] text-center xl:text-left xl:max-w-[29rem]'>
+                    Let’ checkout your <span className='text-secondary-100'>learning</span> journey
+                </div>
+            </RevealOnScroll>
+
             <div className='flex gap-28 mt-24'>
                 <div className='grid xl:grid-cols-2 gap-4'>
                     <Feature
@@ -43,16 +47,24 @@ const LearningJourney: FC = () => {
                 </div>
                 <div className='w-[55rem] hidden lg:block'>
                     <div>
-                        <Image src={JourneyItem1} alt='journey item' />
+                        <RevealOnScroll direction='right'>
+                            <Image src={JourneyItem1} alt='journey item' />
+                        </RevealOnScroll>
                     </div>
                     <div className='flex justify-end'>
-                        <Image src={JourneyItem2} alt='journey item' />
+                        <RevealOnScroll direction='left'>
+                            <Image src={JourneyItem2} alt='journey item' />
+                        </RevealOnScroll>
                     </div>
                     <div>
-                        <Image src={JourneyItem3} alt='journey item' />
+                        <RevealOnScroll direction='right'>
+                            <Image src={JourneyItem3} alt='journey item' />
+                        </RevealOnScroll>
                     </div>
                     <div className='flex justify-end'>
-                        <Image src={JourneyItem4} alt='journey item' />
+                        <RevealOnScroll direction='left'>
+                            <Image src={JourneyItem4} alt='journey item' />
+                        </RevealOnScroll>
                     </div>
                 </div>
             </div>

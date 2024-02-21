@@ -1,6 +1,29 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom'
-import Home from "../app/page"
+import Home from "../app/page";
+
+class IntersectionObserver {
+    readonly root: Element | null = null;
+    readonly rootMargin: string = '';
+    readonly thresholds: ReadonlyArray<number> = [];
+
+    constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) { }
+
+    observe() {
+        return null;
+    }
+
+    unobserve() {
+        return null;
+    }
+
+    disconnect() {
+        return null;
+    }
+}
+
+//@ts-ignore
+global.IntersectionObserver = IntersectionObserver;
 
 jest.mock('next/navigation', () => ({
     useRouter() {
